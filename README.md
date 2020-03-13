@@ -1,4 +1,4 @@
-# csm
+# CSM
 
 A new Flutter project.
 
