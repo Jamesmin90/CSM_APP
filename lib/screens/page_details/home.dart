@@ -11,7 +11,7 @@ class HomneWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(30),
               child: Image.asset(
-                "assets/images/Eisen.jpg",
+                "assets/images/Paris2.jpg",
                 fit: BoxFit.cover,
                 height: 150,
                 width: 150,
@@ -20,7 +20,7 @@ class HomneWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(30),
               child: Image.asset(
-                "assets/images/Eisen.jpg",
+                "assets/images/Thursday.jpg",
                 fit: BoxFit.cover,
                 height: 150,
                 width: 150,
@@ -29,7 +29,7 @@ class HomneWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(30),
               child: Image.asset(
-                "assets/images/Eisen.jpg",
+                "assets/images/NCT.jpg",
                 fit: BoxFit.cover,
                 height: 150,
                 width: 150,
