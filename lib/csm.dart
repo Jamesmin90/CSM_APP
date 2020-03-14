@@ -7,7 +7,8 @@ class CSM extends StatelessWidget {
       title: "CSM!",
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text("Home")
+          title: new Text("Home"),
+          backgroundColor: Colors.blueGrey[900],
         ),
        body: new HomneWidget(),
        
