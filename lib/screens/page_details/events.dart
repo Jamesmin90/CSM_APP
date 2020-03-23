@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/text_section.dart';
 
@@ -7,7 +9,11 @@ class Events extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Events')),
-      body: ListView(
+      body: FutureBuilder(
+        future: DefaultAssetBundle.of(context).loadString("assets/json/data.json"),
+        builder: (context, snapshot){
+          var mydata = json.decode(snapshot.data.toString());
+          return ListView(
         children: <Widget>[
           Container(
             padding: const EdgeInsets.all(8.0),
@@ -15,24 +21,22 @@ class Events extends StatelessWidget {
                 BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
             child: Image.asset("assets/images/livingroom.jpeg"),
           ),
-          TextSection("STUDENT MEETING DONNERSTAGABENDS",
-              "Komm vorbei und erlebe unsere wöchentlichen Zusammen-kommen, die jeden Donnerstag Abend stattfinden. Wir genießen die Gemeinschaft miteinander und beschäftigen uns mit Themen, die für unser christliches Leben essentiell sind, um unseren Glauben, während dem Studium, zu stärken. Schau dir die Themen an, die wir in der Vergangenheit behandelt haben!"),
-          TextSection("HAUSKREISE AM FREITAG",
-              "Freitags haben wir Hauskreise bei christlichen Familien, wo wir gemeinsam Abendessen, Gemeinschaft haben, zusammen singen und uns ermutigen in unserem Leben als Christen voranzugehen."),
+          TextSection(mydata["events_1"]["title"], mydata["events_1"]["content"]),
+          TextSection(mydata["events_2"]["title"],mydata["events_2"]["content"]),
           Container(
             padding: const EdgeInsets.all(8.0),
             decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
             child: Image.asset("assets/images/Divine_Romance.jpg"),
           ),
-          TextSection("BIBLE STUDYS IN KLEINGRUPPEN",
-              "Unter der Woche treffen wir uns gerne zu zweit oder zu dritt, um gemeinsam in der Bibel zu lesen und uns über verschiedene Themen und Fragen auszutauschen. Zudem wollen wir diese Zeiten nutzen, um einander besser kennenzulernen und uns gegenseitig mit Rat zur Seite stehen."),
-          TextSection("BIBELLESEPLAN",
-              "Regelmäßig die Bibel zu lesen ist wichtig für unseren Wachstum im christlichen Leben. Wir haben einen Leseplan in dem wir zusammen in einem Jahr das Neue Testament  lesen, so wird das Lesen der Bibel zu einer guten Gewohnheit."),
-          TextSection("FREIZEITEN UND TRIPS",
-              "Ab und zu besuchen wir gerne Christen in anderen Städten. Wir hoffen, dass durch diese Reisen unser Blick und Eindruck vom Leib Christi erweitert und vertieft werden kann. Weiter unten findest du ein kurzes Video über unserer jährlichen Kirchengeschichtsreise."),
+          TextSection(mydata["events_3"]["title"],mydata["events_3"]["content"]),
+          TextSection(mydata["events_4"]["title"],mydata["events_4"]["content"]),
+          TextSection(mydata["events_5"]["title"],mydata["events_5"]["content"])
         ],
+      );
+        },
       ),
     );
   }
 }
+
