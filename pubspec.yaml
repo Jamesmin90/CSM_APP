@@ -47,12 +47,17 @@ flutter:
   fonts:
     - family: OpenSans
       fonts:
+<<<<<<< HEAD
         - asset: assets/fonts/OpenSans-Bold.ttf
         - asset: assets/fonts/OpenSans-Regular.ttf
         - asset: assets/fonts/Montserrat-Regular.ttf
           weight: 300
         - asset: assets/fonts/Montserrat-BoldItalic.ttf
           weight: 600
+=======
+        - asset: fonts/OpenSans-Bold.ttf
+        - asset: fonts/OpenSans-Regular.ttf
+>>>>>>> a69b3914550182348a50e92a347c5a17591443c5
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

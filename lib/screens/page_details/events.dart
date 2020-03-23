@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/text_section.dart';
 
+
 class Events extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
