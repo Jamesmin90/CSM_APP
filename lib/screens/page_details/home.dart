@@ -24,7 +24,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,38 +38,7 @@ class _HomeState extends State<Home> {
         buildlink(imageName: "Thursday.jpg", page: '/events'),
         buildlink(imageName: "NCT.jpg", page: '/about')
       ])),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home', style: TextStyle(color: Colors.black)),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            title: Text('Bible', style: TextStyle(color: Colors.black)),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.format_list_bulleted),
-            title: Text('Outline', style: TextStyle(color: Colors.black)),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.library_music),
-            title: Text('Songbook', style: TextStyle(color: Colors.black)),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.music_note),
-            title: Text('Audio', style: TextStyle(color: Colors.black)),
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-      ),
+
     );
   }
 }

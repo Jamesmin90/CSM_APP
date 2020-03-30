@@ -2,7 +2,7 @@ import 'package:csm/screens/page_details/faith.dart';
 import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
 import 'package:flutter/material.dart';
-import 'screens/page_details/home.dart';
+import 'screens/page_details/navihome.dart';
 import 'package:csm/screens/page_details/events.dart';
 import 'package:csm/screens/page_details/trips.dart';
 import 'package:csm/screens/page_details/about.dart';
@@ -28,7 +28,7 @@ class CSM extends StatelessWidget {
       title: "CSM!",
       initialRoute: '/',
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => NaviHome(),
         '/events': (context) => Events(),
         '/trips': (context) => Trips(),
         '/about': (context) => About(),
@@ -44,3 +44,4 @@ class CSM extends StatelessWidget {
   } 
   
   }
+
