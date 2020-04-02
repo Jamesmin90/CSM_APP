@@ -14,8 +14,9 @@ class _AboutState extends State<About> {
           onPressed: () {
             Navigator.pushNamed(context, '$page');
           },
-          child: Image.asset(
-            "assets/images/$imageName",
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.asset("assets/images/$imageName"),
           ),
         ),
       ),

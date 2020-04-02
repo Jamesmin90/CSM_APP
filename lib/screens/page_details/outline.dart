@@ -10,10 +10,10 @@ class _OutlineState extends State<Outline> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Audio"),
+        title: Text("Outline"),
       ),
       body: Center(
-        child: Text("Audio"),
+        child: Text("Outline"),
       ),
     );
   }

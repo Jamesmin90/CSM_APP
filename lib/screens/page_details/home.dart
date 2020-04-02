@@ -16,14 +16,14 @@ class _HomeState extends State<Home> {
           onPressed: () {
             Navigator.pushNamed(context, '$page');
           },
-          child: Image.asset(
-            "assets/images/$imageName",
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.asset("assets/images/$imageName"),
           ),
         ),
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,6 @@ class _HomeState extends State<Home> {
         buildlink(imageName: "Thursday.jpg", page: '/events'),
         buildlink(imageName: "NCT.jpg", page: '/about')
       ])),
-
     );
   }
 }
