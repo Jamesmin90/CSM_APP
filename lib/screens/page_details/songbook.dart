@@ -10,10 +10,10 @@ class _SongbookState extends State<Songbook> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Audio"),
+        title: Text("Songbook"),
       ),
       body: Center(
-        child: Text("Audio"),
+        child: Text("Songbook"),
       ),
     );
   }
