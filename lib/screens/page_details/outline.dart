@@ -12,8 +12,24 @@ class _OutlineState extends State<Outline> {
       appBar: AppBar(
         title: Text("Outline"),
       ),
-      body: Center(
-        child: Text("Outline"),
+      body: ListView(
+        children:<Widget>[
+          Expanded(
+            child:Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(
+                    colour: activeCardColour,
+                    cardChild: OutlineImage(
+                      image: 'Divine_Romance.jpg',
+                      label: 'The Divine Romance'
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
