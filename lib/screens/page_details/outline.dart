@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:csm/screens/components/reusablecard.dart';
-import 'package:csm/screens/components/outlineimage.dart';
+//import 'package:csm/screens/components/reusablecard.dart';
+//import 'package:csm/screens/components/outlineimage.dart';
 import 'package:csm/screens/components/web_view_container.dart';
 
+//import 'package:webview_flutter/webview_flutter.dart';
+
+class Outline extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Outline"),
+      ),
+      body: WebViewContainer('https://www.csmuenchen.de/topics'),
+    );
+  }
+}
 
 
+
+
+/*
 const activeCardColour = Colors.white;
 
 class Outline extends StatefulWidget {
@@ -16,7 +32,7 @@ class _OutlineState extends State<Outline> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: Key('123'),
+      key: UniqueKey(),
       appBar: AppBar(
         title: Text("Outline"),
       ),
@@ -59,4 +75,4 @@ void _handleURLButtonPress(BuildContext context, String url) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => WebViewContainer(url)));
   }
-
+*/

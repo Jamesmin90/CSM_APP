@@ -16,9 +16,9 @@ class _NaviHomeState extends State<NaviHome> {
   final List<Widget> _children = [
     Home(),
     Bible(),
-    Audio(),
     Outline(),
-    Songbook()
+    Songbook(),
+    Audio()
   ];
 
   void onTappedBar(int index){
