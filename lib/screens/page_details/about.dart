@@ -30,8 +30,8 @@ class _AboutState extends State<About> {
       ),
       body: new Center(
           child: Column(children: <Widget>[
-        buildlink(imageName: "Bible.jpg", page: '/ourstory'),
-        buildlink(imageName: "Bible.jpg", page: '/faith'),
+        buildlink(imageName: "Eisen.jpg", page: '/ourstory'),
+        buildlink(imageName: "coffee-and-bible.jpg", page: '/faith'),
         buildlink(imageName: "Bible.jpg", page: '/ourgoal')
       ])),
     );

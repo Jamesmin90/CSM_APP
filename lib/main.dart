@@ -7,6 +7,7 @@ import 'package:csm/screens/page_details/events.dart';
 import 'package:csm/screens/page_details/trips.dart';
 import 'package:csm/screens/page_details/about.dart';
 import 'package:csm/screens/components/constants.dart';
+import 'package:csm/screens/page_details/student_blog.dart';
 
 
 void main() => runApp(CSM());
@@ -34,7 +35,8 @@ class CSM extends StatelessWidget {
         '/about': (context) => About(),
         '/ourstory':(context) => Ourstory(),
         '/faith':(context) => Faith(),
-        '/ourgoal':(context) => Ourgoal()
+        '/ourgoal':(context) => Ourgoal(),
+        '/studentblog':(context) => StudentBlog(),
 
       },
       

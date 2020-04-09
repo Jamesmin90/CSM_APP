@@ -14,7 +14,7 @@ class Events extends StatelessWidget {
         builder: (context, snapshot){
           var mydata = json.decode(snapshot.data.toString());
           return ListView(
-        children: <Widget>[
+        children: <Widget>[ 
           Container(
             padding: const EdgeInsets.all(8.0),
             decoration:

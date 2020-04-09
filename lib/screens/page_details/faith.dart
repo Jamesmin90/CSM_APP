@@ -23,9 +23,8 @@ class Faith extends StatelessWidget {
             ),
           ),
           Container(
-          padding: const EdgeInsets.fromLTRB(16, 1.0, 16, 16.0),
-          child: Text(".", 
-            style: Theme.of(context).textTheme.body1),
+          padding: const EdgeInsets.all(4.0),
+          child: Image.asset("assets/images/faith.jpg"),
           ),
         ],
       ),

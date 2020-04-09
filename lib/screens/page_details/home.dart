@@ -7,8 +7,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Expanded buildlink({String imageName, String page}) {
-    return Expanded(
+  Container buildlink({String imageName, String page}) {
+    return Container(
       child: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
@@ -31,13 +31,15 @@ class _HomeState extends State<Home> {
       appBar: new AppBar(
         title: new Text("Home"),
       ),
-      body: new Center(
-          child: Column(children: <Widget>[
-        ImageBanner("assets/images/Eisen.jpg"),
-        buildlink(imageName: "Paris2.jpg", page: '/trips'),
-        buildlink(imageName: "Thursday.jpg", page: '/events'),
-        buildlink(imageName: "NCT.jpg", page: '/about')
-      ])),
+      body: ListView(
+        shrinkWrap: true,
+        children: <Widget>[
+        ImageBanner("assets/images/Banner_12resized.jpg"),
+        buildlink(imageName: "Trips04a.jpg", page: '/trips'),
+        buildlink(imageName: "Events 07a.jpg", page: '/events'),
+        buildlink(imageName: "About us 03a.jpg", page: '/studentblog'),
+        buildlink(imageName: "Bible.jpg", page: '/about')
+      ]),
     );
   }
 }
