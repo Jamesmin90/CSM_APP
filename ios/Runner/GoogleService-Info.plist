@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>90096619941-5503j5hmu81cfltqc5aoutf1rvepjahh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.90096619941-5503j5hmu81cfltqc5aoutf1rvepjahh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDm1sZSH8FfxjBIZc4UlBcKl4OddhTi3V0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>90096619941</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.JMin.csm</string>
+	<key>PROJECT_ID</key>
+	<string>csm-app-5b5d2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>csm-app-5b5d2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:90096619941:ios:dae929a486c1b9cff9984c</string>
+	<key>DATABASE_URL</key>
+	<string>https://csm-app-5b5d2.firebaseio.com</string>
+</dict>
+</plist>
