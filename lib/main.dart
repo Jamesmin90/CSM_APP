@@ -9,21 +9,19 @@ import 'package:csm/screens/page_details/about.dart';
 import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/page_details/student_blog.dart';
 
-
 void main() => runApp(CSM());
 
 class CSM extends StatelessWidget {
- @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Color(0xFF263238),
-        appBarTheme: AppBarTheme(
-          textTheme: TextTheme(title: AppBarTextStyle)
-        ),
+        appBarTheme:
+            AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
         textTheme: TextTheme(
-          title: TitleTextStyle,
-          body1: Body1TextStyle,
+          headline6: TitleTextStyle,
+          bodyText2: Body1TextStyle,
         ),
       ),
       title: "CSM!",
@@ -33,17 +31,11 @@ class CSM extends StatelessWidget {
         '/events': (context) => Events(),
         '/trips': (context) => Trips(),
         '/about': (context) => About(),
-        '/ourstory':(context) => Ourstory(),
-        '/faith':(context) => Faith(),
-        '/ourgoal':(context) => Ourgoal(),
-        '/studentblog':(context) => StudentBlog(),
-
+        '/ourstory': (context) => Ourstory(),
+        '/faith': (context) => Faith(),
+        '/ourgoal': (context) => Ourgoal(),
+        '/studentblog': (context) => StudentBlog(),
       },
-      
-       
-      ); 
-    
-  } 
-  
+    );
   }
-
+}

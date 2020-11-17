@@ -5,7 +5,6 @@ import 'package:csm/screens/page_details/outline.dart';
 import 'package:csm/screens/page_details/songbook.dart';
 import 'package:csm/screens/page_details/home.dart';
 
-
 class NaviHome extends StatefulWidget {
   @override
   _NaviHomeState createState() => _NaviHomeState();
@@ -21,12 +20,12 @@ class _NaviHomeState extends State<NaviHome> {
     Audio()
   ];
 
-  void onTappedBar(int index){
-    setState((){
+  void onTappedBar(int index) {
+    setState(() {
       _currentIndex = index;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,27 +38,26 @@ class _NaviHomeState extends State<NaviHome> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home', style: TextStyle(color: Colors.black)),
+            label: ('Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            title: Text('Bible', style: TextStyle(color: Colors.black)),
+            label: ('Bible'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_bulleted),
-            title: Text('Outline', style: TextStyle(color: Colors.black)),
+            label: ('Outline'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_music),
-            title: Text('Songbook', style: TextStyle(color: Colors.black)),
+            label: ('Songbook'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.music_note),
-            title: Text('Audio', style: TextStyle(color: Colors.black)),
+            label: ('Audio'),
           ),
         ],
       ),
-      
     );
   }
 }
