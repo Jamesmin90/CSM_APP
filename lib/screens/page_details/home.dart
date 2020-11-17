@@ -1,5 +1,9 @@
-import 'package:csm/screens/components/home_banner.dart';
+//import 'package:csm/screens/components/home_banner.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   @override
@@ -18,11 +22,30 @@ class _HomeState extends State<Home> {
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
-            child: Image.asset("assets/images/$imageName"),
+            child: Image.network('$imageName'),
           ),
         ),
       ),
     );
+  }
+
+  Future<List<Card>> _getData() async {
+    var data = await http
+        .get("https://next.json-generator.com/api/json/get/VJmiHkpYF");
+
+    var jsonData = jsonDecode(data.body);
+
+    List<Card> cards = [];
+
+    for (var c in jsonData) {
+      Card card = Card(c["image"], c["title"]);
+
+      cards.add(card);
+    }
+
+    print(cards.length);
+
+    return cards;
   }
 
   @override
@@ -31,15 +54,46 @@ class _HomeState extends State<Home> {
       appBar: new AppBar(
         title: new Text("Home"),
       ),
-      body: ListView(
-        shrinkWrap: true,
-        children: <Widget>[
-        ImageBanner("assets/images/Banner_12resized.jpg"),
-        buildlink(imageName: "Trips04a.jpg", page: '/trips'),
-        buildlink(imageName: "Events 07a.jpg", page: '/events'),
-        buildlink(imageName: "About us 03a.jpg", page: '/studentblog'),
-        buildlink(imageName: "Bible.jpg", page: '/about')
-      ]),
+      body: Container(
+        child: FutureBuilder(
+          future: _getData(),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return CircularProgressIndicator();
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return ListView(
+                    shrinkWrap: true,
+                    children: [
+                      buildlink(
+                          imageName: snapshot.data[index].image,
+                          page: snapshot.data[index].title)
+                    ],
+                  );
+                },
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }
+
+class Card {
+  final String image;
+  final String title;
+  Card(this.image, this.title);
+}
+
+// ListView(
+//         shrinkWrap: true,
+//         children: <Widget>[
+//         ImageBanner("assets/images/Banner_12resized.jpg"),
+//         buildlink(imageName: "Trips04a.jpg", page: '/trips'),
+//         buildlink(imageName: "Events 07a.jpg", page: '/events'),
+//         buildlink(imageName: "About us 03a.jpg", page: '/studentblog'),
+//         buildlink(imageName: "Bible.jpg", page: '/about')
+//       ]),
