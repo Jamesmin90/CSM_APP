@@ -14,7 +14,8 @@ class _HomeState extends State<Home> {
   Container buildlink({String imageName, String page}) {
     return Container(
       child: Container(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        width: double.infinity,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
         child: FlatButton(
           onPressed: () {
@@ -22,7 +23,11 @@ class _HomeState extends State<Home> {
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
-            child: Image.network('$imageName'),
+            child: Image.network(
+              '$imageName',
+              fit: BoxFit.fitWidth,
+              height: MediaQuery.of(context).copyWith().size.height / 5,
+            ),
           ),
         ),
       ),
@@ -51,32 +56,44 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        title: new Text("Home"),
-      ),
-      body: Container(
-        child: FutureBuilder(
-          future: _getData(),
-          builder: (context, snapshot) {
-            if (snapshot.data == null) {
-              return Center(child: CircularProgressIndicator());
-            } else {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return ListView(
-                    shrinkWrap: true,
-                    children: [
-                      buildlink(
-                          imageName: snapshot.data[index].image,
-                          page: snapshot.data[index].title)
-                    ],
-                  );
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 200.0,
+            floating: false,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.network("https://i.imgur.com/p3CfZBS.png",
+                  fit: BoxFit.cover),
+            ),
+          ),
+          SliverFillRemaining(
+            child: Container(
+              child: FutureBuilder(
+                future: _getData(),
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) {
+                    return Center(child: CircularProgressIndicator());
+                  } else {
+                    return ListView.builder(
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            buildlink(
+                                imageName: snapshot.data[index].image,
+                                page: snapshot.data[index].title)
+                          ],
+                        );
+                      },
+                    );
+                  }
                 },
-              );
-            }
-          },
-        ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
