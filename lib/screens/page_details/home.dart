@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
           future: _getData(),
           builder: (context, snapshot) {
             if (snapshot.data == null) {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             } else {
               return ListView.builder(
                 itemCount: snapshot.data.length,
@@ -87,13 +87,3 @@ class Card {
   final String title;
   Card(this.image, this.title);
 }
-
-// ListView(
-//         shrinkWrap: true,
-//         children: <Widget>[
-//         ImageBanner("assets/images/Banner_12resized.jpg"),
-//         buildlink(imageName: "Trips04a.jpg", page: '/trips'),
-//         buildlink(imageName: "Events 07a.jpg", page: '/events'),
-//         buildlink(imageName: "About us 03a.jpg", page: '/studentblog'),
-//         buildlink(imageName: "Bible.jpg", page: '/about')
-//       ]),
