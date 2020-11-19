@@ -11,20 +11,31 @@ class WebViewContainer extends StatefulWidget {
 
 class _WebViewContainerState extends State<WebViewContainer> {
   var _url;
+  bool isLoading = true;
   final _key = UniqueKey();
   _WebViewContainerState(this._url);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
           Expanded(
             child: WebView(
               key: _key,
               javascriptMode: JavascriptMode.unrestricted,
-              initialUrl: _url
-            )
+              initialUrl: _url,
+              onPageFinished: (finish) {
+                setState(() {
+                  isLoading = false;
+                });
+              },
+            ),
           ),
+          isLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Stack(),
         ],
       ),
     );

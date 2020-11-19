@@ -1,6 +1,6 @@
 //import 'package:csm/screens/components/home_banner.dart';
 import 'dart:convert';
-
+import 'package:csm/screens/components/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -56,9 +56,45 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: Container(
+        width: MediaQuery.of(context).copyWith().size.height / 3,
+        child: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: <Color>[
+                  Colors.blue[600],
+                  Colors.lightBlueAccent
+                ])),
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Material(
+                        elevation: 10,
+                        borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                        child: Image.network(
+                          "https://i.imgur.com/b1XF5aP.png",
+                          width: 100,
+                          height: 100,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              CustomListTile(Icons.person, 'Profile', () => {}),
+              CustomListTile(Icons.notifications, 'Notifications', () => {}),
+              CustomListTile(Icons.settings, 'Settings', () => {}),
+              CustomListTile(Icons.lock, 'Log Out', () => {}),
+            ],
+          ),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            iconTheme: IconThemeData(color: Colors.blue[300]),
             expandedHeight: 200.0,
             floating: false,
             pinned: true,
