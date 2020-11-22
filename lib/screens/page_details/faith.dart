@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:csm/screens/components/getdata.dart';
-import 'package:csm/screens/components/mybullet.dart';
 
 class Faith extends StatelessWidget {
   @override
@@ -70,10 +69,14 @@ class Faith extends StatelessWidget {
                                   color: Colors.grey,
                                 ),
                               ),
-                              ListTile(
-                                leading: MyBullet(),
-                                title: Text(snapshot.data[index].text),
-                              )
+                              Container(
+                                padding: const EdgeInsets.fromLTRB(
+                                    16.0, 10.0, 16.0, 16.0),
+                                child: Text(
+                                  snapshot.data[index].text,
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ),
                             ],
                           );
                         },

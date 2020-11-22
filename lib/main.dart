@@ -1,3 +1,4 @@
+import 'package:csm/screens/page_details/audio.dart';
 import 'package:csm/screens/page_details/faith.dart';
 import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
@@ -15,15 +16,15 @@ class CSM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData(
-      //   primaryColor: Color(0xFF263238),
-      //   appBarTheme:
-      //       AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
-      //   textTheme: TextTheme(
-      //     headline6: TitleTextStyle,
-      //     bodyText2: Body1TextStyle,
-      //   ),
-      // ),
+      theme: ThemeData(
+        primaryColor: Color(0xFF263238),
+        appBarTheme:
+            AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
+        textTheme: TextTheme(
+          headline6: TitleTextStyle,
+          bodyText2: Body1TextStyle,
+        ),
+      ),
       title: "CSM!",
       initialRoute: '/',
       routes: {
@@ -35,6 +36,7 @@ class CSM extends StatelessWidget {
         '/faith': (context) => Faith(),
         '/ourgoal': (context) => Ourgoal(),
         '/studentblog': (context) => StudentBlog(),
+        '/test': (context) => Audio(),
       },
     );
   }
