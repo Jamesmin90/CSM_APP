@@ -1,28 +1,88 @@
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/text_section.dart';
+import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:csm/screens/components/getdata.dart';
 
 class Ourgoal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Unser Ziel')
-      ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-            child: Image.asset("assets/images/Prayer_tower.jpg"),
-          ),
-          TextSection("Leben",
-              "IM LEBEN GOTTES BIS ZUR REIFE ZU WACHSEN — EPH. 4:15; KOL. 1:28"),
-          TextSection("Wahrheit",
-              "IN DER VOLLEN ERKENNTNIS DER WAHRHEIT GEMÄSS DER HEILIGEN SCHRIFT AUSGESTATTET ZU SEIN —2. TIM. 3:16-17; 1. TIM. 2:4"),
-          TextSection("Dienst",
-            "UNSEREN DIENST FÜR DEN AUFBAU DIE GEMEINDE ZU ENTWICKELN — MATT. 28:19; EPH. 4:12; 1. KOR. 14:1"),
-        ]
+      body: ColorfulSafeArea(
+        color: Color(0xFF263238),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              iconTheme: IconThemeData(color: Colors.lightBlue[900]),
+              backgroundColor: Colors.white,
+              expandedHeight: 140.0,
+              floating: true,
+              pinned: true,
+              //snap: false,
+              flexibleSpace: FlexibleSpaceBar(
+                  title: SizedBox(
+                height: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  //crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    SizedBox(height: 10),
+                    Container(
+                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                      width: double.infinity,
+                      child: Text(
+                        'Unsere Ziel',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          color: Colors.lightBlue[900],
+                          fontSize: 25,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+            ),
+            SliverFillRemaining(
+              child: Container(
+                child: FutureBuilder(
+                  future: Getdata(
+                          'https://next.json-generator.com/api/json/get/NJ_N75fcF')
+                      .getData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Container(
+                                child:
+                                    Image.network(snapshot.data[index].image),
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                                width: 100.0,
+                                child: Divider(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              TextSection(snapshot.data[index].title,
+                                  snapshot.data[index].text)
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

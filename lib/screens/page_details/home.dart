@@ -4,6 +4,9 @@ import 'package:csm/screens/components/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:csm/screens/components/buildlink.dart';
+import 'package:csm/screens/components/getdata.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,48 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Container buildlink({String imageName, String page}) {
-    return Container(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        width: double.infinity,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-        child: FlatButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '$page');
-          },
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              '$imageName',
-              fit: BoxFit.fitWidth,
-              height: MediaQuery.of(context).copyWith().size.height / 5,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Future<List<Card>> _getData() async {
-    var data = await http
-        .get("https://next.json-generator.com/api/json/get/VJmiHkpYF");
-
-    var jsonData = jsonDecode(data.body);
-
-    List<Card> cards = [];
-
-    for (var c in jsonData) {
-      Card card = Card(c["image"], c["title"]);
-
-      cards.add(card);
-    }
-
-    print(cards.length);
-
-    return cards;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,52 +52,52 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            iconTheme: IconThemeData(color: Colors.blue[300]),
-            expandedHeight: 200.0,
-            floating: false,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.network("https://i.imgur.com/p3CfZBS.png",
-                  fit: BoxFit.cover),
-            ),
-          ),
-          SliverFillRemaining(
-            child: Container(
-              child: FutureBuilder(
-                future: _getData(),
-                builder: (context, snapshot) {
-                  if (snapshot.data == null) {
-                    return Center(child: CircularProgressIndicator());
-                  } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            buildlink(
-                                imageName: snapshot.data[index].image,
-                                page: snapshot.data[index].title)
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
+      body: ColorfulSafeArea(
+        color: Color(0xFF263238),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              iconTheme: IconThemeData(color: Colors.blue[300]),
+              expandedHeight: 200.0,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.network("https://i.imgur.com/p3CfZBS.png",
+                    fit: BoxFit.cover),
               ),
             ),
-          ),
-        ],
+            SliverFillRemaining(
+              child: Container(
+                child: FutureBuilder(
+                  future: Getdata(
+                          'https://next.json-generator.com/api/json/get/VJmiHkpYF')
+                      .getData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.data == null) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              BuildLink(
+                                  snapshot.data[index].image,
+                                  snapshot.data[index].title,
+                                  snapshot.data[index].text)
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
-}
-
-class Card {
-  final String image;
-  final String title;
-  Card(this.image, this.title);
 }

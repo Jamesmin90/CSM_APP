@@ -15,15 +15,15 @@ class CSM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xFF263238),
-        appBarTheme:
-            AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
-        textTheme: TextTheme(
-          headline6: TitleTextStyle,
-          bodyText2: Body1TextStyle,
-        ),
-      ),
+      // theme: ThemeData(
+      //   primaryColor: Color(0xFF263238),
+      //   appBarTheme:
+      //       AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
+      //   textTheme: TextTheme(
+      //     headline6: TitleTextStyle,
+      //     bodyText2: Body1TextStyle,
+      //   ),
+      // ),
       title: "CSM!",
       initialRoute: '/',
       routes: {
