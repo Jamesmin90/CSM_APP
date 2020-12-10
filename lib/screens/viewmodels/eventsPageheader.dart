@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class EventsPageHeader implements SliverPersistentHeaderDelegate {
-  EventsPageHeader({
-    this.minExtent,
-    @required this.maxExtent,
-  });
+  EventsPageHeader({this.minExtent, this.maxExtent, this.title});
   final double minExtent;
   final double maxExtent;
+  final String title;
 
   @override
   Widget build(
@@ -37,7 +35,7 @@ class EventsPageHeader implements SliverPersistentHeaderDelegate {
           right: 16.0,
           bottom: 16.0,
           child: Text(
-            'Lorem ipsum',
+            title,
             style: TextStyle(
               fontSize: 32.0,
               color: Colors.white.withOpacity(titleOpacity(shrinkOffset)),
@@ -59,6 +57,11 @@ class EventsPageHeader implements SliverPersistentHeaderDelegate {
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
     return true;
   }
+
+  PersistentHeaderShowOnScreenConfiguration get showOnScreenConfiguration =>
+      null;
+  TickerProvider get vsync => null;
+  OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
 
   @override
   FloatingHeaderSnapConfiguration get snapConfiguration => null;

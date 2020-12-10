@@ -26,6 +26,8 @@ dependencies:
   http: ^0.12.0+4
   webview_flutter: ^0.3.19+9
   colorful_safe_area: ^0.2.1
+  google_fonts: ^1.1.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +60,19 @@ flutter:
           weight: 300
         - asset: assets/fonts/Montserrat-BoldItalic.ttf
           weight: 600
+    - family: Avenir
+      fonts:
+        - asset: assets/fonts/Metropolis-Regular.otf
+          weight: 300
+        - asset: assets/fonts/Metropolis-Bold.otf
+          weight: 600
+    - family: FredokaOne
+      fonts:
+        - asset: assets/fonts/FredokaOne-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/FredokaOne-Regular.ttf
+          weight: 600
+
 
     
 

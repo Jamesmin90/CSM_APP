@@ -2,9 +2,10 @@ import 'package:csm/screens/page_details/audio.dart';
 import 'package:csm/screens/page_details/faith.dart';
 import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
+import 'package:csm/screens/viewmodels/eventsViewModel.dart';
 import 'package:flutter/material.dart';
 import 'screens/page_details/navihome.dart';
-import 'package:csm/screens/page_details/events.dart';
+import 'package:csm/screens/page_details/eventslist.dart';
 import 'package:csm/screens/page_details/trips.dart';
 import 'package:csm/screens/page_details/about.dart';
 import 'package:csm/screens/components/constants.dart';
@@ -17,7 +18,7 @@ class CSM extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Color(0xFF263238),
+        primaryColor: Color.fromRGBO(60, 120, 140, 1),
         appBarTheme:
             AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
         textTheme: TextTheme(
@@ -29,7 +30,7 @@ class CSM extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => NaviHome(),
-        '/events': (context) => Events(),
+        '/events': (context) => EventsList(),
         '/trips': (context) => Trips(),
         '/about': (context) => About(),
         '/ourstory': (context) => Ourstory(),
@@ -37,6 +38,7 @@ class CSM extends StatelessWidget {
         '/ourgoal': (context) => Ourgoal(),
         '/studentblog': (context) => StudentBlog(),
         '/test': (context) => Audio(),
+        '/eventsview': (context) => EventsViewModel(),
       },
     );
   }

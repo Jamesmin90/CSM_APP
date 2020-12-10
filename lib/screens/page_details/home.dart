@@ -1,9 +1,9 @@
 //import 'package:csm/screens/components/home_banner.dart';
-import 'dart:convert';
+//import 'dart:convert';
 import 'package:csm/screens/components/custom_list_tile.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:http/http.dart' as http;
+//import 'dart:async';
+//import 'package:http/http.dart' as http;
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:csm/screens/components/buildlink.dart';
 import 'package:csm/screens/components/getdata.dart';
@@ -62,12 +62,36 @@ class _HomeState extends State<Home> {
               floating: false,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.network("https://i.imgur.com/p3CfZBS.png",
-                    fit: BoxFit.cover),
+                title: Transform.translate(
+                  offset: Offset(-13, 0),
+                  child: Text(
+                    'Christian Studentss in München',
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+                background: Transform.translate(
+                  offset: Offset(-80.0, 0.0),
+                  child: Container(
+                    width: 0.0,
+                    height: 50.0,
+                    //constraints: BoxConstraints.expand(height: 100, width: 100),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: const AssetImage(
+                            'assets/images/csm-white.png',
+                          ),
+                          //fit: BoxFit.cover,
+                          scale: 5),
+                    ),
+                  ),
+                ),
+
+                //fit: BoxFit.cover),
               ),
             ),
             SliverFillRemaining(
               child: Container(
+                color: Color.fromRGBO(60, 120, 140, 1),
                 child: FutureBuilder(
                   future: Getdata(
                           'https://next.json-generator.com/api/json/get/VJmiHkpYF')

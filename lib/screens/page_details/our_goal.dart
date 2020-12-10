@@ -19,29 +19,30 @@ class Ourgoal extends StatelessWidget {
               pinned: true,
               //snap: false,
               flexibleSpace: FlexibleSpaceBar(
-                  title: SizedBox(
-                height: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  //crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    SizedBox(height: 10),
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                      width: double.infinity,
-                      child: Text(
-                        'Unsere Ziel',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Colors.lightBlue[900],
-                          fontSize: 25,
+                title: SizedBox(
+                  height: 100,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    //crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      SizedBox(height: 10),
+                      Container(
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
+                        width: double.infinity,
+                        child: Text(
+                          'Unsere Ziel',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            color: Colors.lightBlue[900],
+                            fontSize: 25,
+                          ),
+                          textAlign: TextAlign.left,
                         ),
-                        textAlign: TextAlign.left,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )),
+              ),
             ),
             SliverFillRemaining(
               child: Container(

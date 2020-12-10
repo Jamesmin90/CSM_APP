@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BuildLink extends StatelessWidget {
-  String imageName;
-  String page;
-  String text;
+  final String imageName;
+  final String page;
+  final String text;
 
   BuildLink(this.imageName, this.page, this.text);
   @override

@@ -26,3 +26,28 @@ class Getdata {
     return cards;
   }
 }
+
+class GetdataEvents {
+  String url;
+
+  GetdataEvents(this.url);
+
+  Future<List<CardEvents>> getData() async {
+    var data = await http.get(url);
+
+    var jsonData = jsonDecode(data.body);
+
+    List<CardEvents> cards = [];
+
+    for (var c in jsonData) {
+      CardEvents card = CardEvents(c["image"], c["title"], c["info"], c["date"],
+          c["time"], c["topic"], c["extra"]);
+
+      cards.add(card);
+    }
+
+    print(cards.length);
+
+    return cards;
+  }
+}
