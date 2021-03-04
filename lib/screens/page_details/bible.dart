@@ -9,17 +9,11 @@ class Bible extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Bible"),
-      ),
-      body: WebViewContainer('https://www.bibleserver.com/ELB/1.Mose1%2C1'),
+      body: WebViewContainer(
+          'https://www.bible.com/de/bible/2351/GEN.1.ELBBK', 'Bible'),
     );
   }
 }
-
-
-
-
 
 /*
 const apiKey = '17b426d27b3a77918c43f7119a2eb39a';

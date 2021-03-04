@@ -10,11 +10,10 @@ class Songbook extends StatelessWidget {
       appBar: AppBar(
         title: Text("Song Book"),
       ),
-      body: WebViewContainer('https://www.csmuenchen.de/topics'),
+      body: WebViewContainer('https://www.csmuenchen.de/topics', 'Song Book'),
     );
   }
 }
-
 
 /*
 class Songbook extends StatefulWidget {

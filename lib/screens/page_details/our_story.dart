@@ -11,7 +11,7 @@ class Ourstory extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              iconTheme: IconThemeData(color: Colors.lightBlue[900]),
+              iconTheme: IconThemeData(color: Color.fromRGBO(0, 110, 160, 1)),
               backgroundColor: Colors.white,
               expandedHeight: 140.0,
               floating: true,
@@ -32,7 +32,7 @@ class Ourstory extends StatelessWidget {
                         'Unsere Geschichte',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          color: Colors.lightBlue[900],
+                          color: Color.fromRGBO(0, 110, 160, 1),
                           fontSize: 25,
                         ),
                         textAlign: TextAlign.left,

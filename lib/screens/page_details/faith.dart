@@ -11,7 +11,7 @@ class Faith extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              iconTheme: IconThemeData(color: Colors.lightBlue[900]),
+              iconTheme: IconThemeData(color: Color.fromRGBO(0, 110, 160, 1)),
               backgroundColor: Colors.white,
               expandedHeight: 140.0,
               floating: true,
@@ -29,10 +29,10 @@ class Faith extends StatelessWidget {
                       padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
                       width: double.infinity,
                       child: Text(
-                        'Unsere Ziel',
+                        'Unsere Glaube',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          color: Colors.lightBlue[900],
+                          color: Color.fromRGBO(0, 110, 160, 1),
                           fontSize: 25,
                         ),
                         textAlign: TextAlign.left,

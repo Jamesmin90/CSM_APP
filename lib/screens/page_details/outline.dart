@@ -9,16 +9,10 @@ class Outline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Outline"),
-      ),
-      body: WebViewContainer('https://www.csmuenchen.de/topics'),
+      body: WebViewContainer('https://www.csmuenchen.de/topics', 'Outline'),
     );
   }
 }
-
-
-
 
 /*
 const activeCardColour = Colors.white;

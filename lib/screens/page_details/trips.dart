@@ -9,11 +9,11 @@ class Trips extends StatelessWidget {
     return Scaffold(
       //backgroundColor: Colors.white,
       body: ColorfulSafeArea(
-        color: Color(0xFF263238),
+        color: Color.fromRGBO(0, 110, 160, 1),
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              iconTheme: IconThemeData(color: Colors.lightBlue[900]),
+              iconTheme: IconThemeData(color: Color.fromRGBO(0, 110, 160, 1)),
               backgroundColor: Colors.white,
               expandedHeight: 140.0,
               floating: false,
@@ -21,32 +21,27 @@ class Trips extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                   title: SizedBox(
                 height: 100,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  //crossAxisAlignment: CrossAxisAlignment.stretch,
+                child: ListView(
                   children: <Widget>[
-                    SizedBox(height: 10),
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(28, 7, 0, 0),
-                      width: double.infinity,
+                    Transform.translate(
+                      offset: Offset(25, 21),
                       child: Text(
                         'Ausflüge',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          color: Colors.lightBlue[900],
+                          color: Color.fromRGBO(0, 110, 160, 1),
                           fontSize: 18,
                         ),
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                      width: double.infinity,
+                    Transform.translate(
+                      offset: Offset(25, 10),
                       child: Text(
                         'Trips',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
-                          color: Colors.lightBlue[900],
+                          color: Color.fromRGBO(0, 110, 160, 1),
                           fontSize: 45,
                         ),
                         textAlign: TextAlign.left,

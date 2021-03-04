@@ -9,7 +9,8 @@ import 'package:csm/screens/page_details/eventslist.dart';
 import 'package:csm/screens/page_details/trips.dart';
 import 'package:csm/screens/page_details/about.dart';
 import 'package:csm/screens/components/constants.dart';
-import 'package:csm/screens/page_details/student_blog.dart';
+import 'package:csm/screens/page_details/welcome_screen.dart';
+import 'package:csm/screens/page_details/registration_screen.dart';
 
 void main() => runApp(CSM());
 
@@ -18,7 +19,8 @@ class CSM extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(60, 120, 140, 1),
+        primaryColor: Color.fromRGBO(0, 110, 160, 1),
+        fontFamily: 'Poppins',
         appBarTheme:
             AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
         textTheme: TextTheme(
@@ -36,9 +38,10 @@ class CSM extends StatelessWidget {
         '/ourstory': (context) => Ourstory(),
         '/faith': (context) => Faith(),
         '/ourgoal': (context) => Ourgoal(),
-        '/studentblog': (context) => StudentBlog(),
         '/test': (context) => Audio(),
         '/eventsview': (context) => EventsViewModel(),
+        '/welcome_screen': (context) => WelcomeScreen(),
+        '/register_screen': (context) => RegistrationScreen(),
       },
     );
   }
