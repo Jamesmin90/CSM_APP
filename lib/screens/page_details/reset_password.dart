@@ -2,14 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/rounded_button.dart';
 import 'package:csm/screens/components/constants.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class ResetScreen extends StatefulWidget {
   @override
   _ResetScreenState createState() => _ResetScreenState();
 }
-
-final GoogleSignIn googleSignIn = GoogleSignIn();
 
 class _ResetScreenState extends State<ResetScreen> {
   String _email;

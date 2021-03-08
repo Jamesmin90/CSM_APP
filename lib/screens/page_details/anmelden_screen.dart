@@ -1,18 +1,16 @@
+import 'package:csm/screens/page_details/navihome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/rounded_button.dart';
 import 'package:csm/screens/components/constants.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-import 'navihome.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
+import 'package:toast/toast.dart';
 
 class AnmeldenScreen extends StatefulWidget {
   @override
   _AnmeldenScreenState createState() => _AnmeldenScreenState();
 }
-
-final GoogleSignIn googleSignIn = GoogleSignIn();
 
 class _AnmeldenScreenState extends State<AnmeldenScreen> {
   String _email, _password;
@@ -97,18 +95,7 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
                 RoundedButton(
                   title: 'Anmelden',
                   colour: Colors.blueAccent,
-                  onPressed: () {
-                    auth
-                        .signInWithEmailAndPassword(
-                            email: _email, password: _password)
-                        .then((_) {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => NaviHome(),
-                        ),
-                      );
-                    });
-                  },
+                  onPressed: () => _signin(_email, _password),
                 ),
                 SizedBox(height: 8.0),
                 Container(
@@ -136,5 +123,27 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
         ),
       ),
     );
+  }
+
+  _signin(String _email, String _password) async {
+    try {
+      //Create Get Firebase Auth User
+      await auth.signInWithEmailAndPassword(email: _email, password: _password);
+
+      //Success
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => NaviHome()));
+    } on FirebaseAuthException catch (error) {
+      Toast.show(error.message, context,
+          duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+
+      // Fluttertoast.showToast(
+      //     msg: error.message,
+      //     toastLength: Toast.LENGTH_SHORT,
+      //     gravity: ToastGravity.TOP,
+      //     timeInSecForIosWeb: 1,
+      //     textColor: Colors.white,
+      //     fontSize: 16.0);
+    }
   }
 }

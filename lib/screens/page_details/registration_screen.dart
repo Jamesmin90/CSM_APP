@@ -1,10 +1,9 @@
-import 'package:csm/screens/page_details/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/rounded_button.dart';
 import 'package:csm/screens/components/constants.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'navihome.dart';
 
@@ -12,8 +11,6 @@ class RegistrationScreen extends StatefulWidget {
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
-
-final GoogleSignIn googleSignIn = GoogleSignIn();
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   String _email, _password;
@@ -104,18 +101,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 RoundedButton(
                   title: 'registrieren',
                   colour: Colors.blueAccent,
-                  onPressed: () {
-                    auth
-                        .createUserWithEmailAndPassword(
-                            email: _email, password: _password)
-                        .then((_) {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => NaviHome(),
-                        ),
-                      );
-                    });
-                  },
+                  onPressed: () => _signup(_email, _password),
                 ),
                 SizedBox(height: 8.0),
                 Container(
@@ -143,6 +129,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
+  }
+
+  _signup(String _email, String _password) async {
+    try {
+      //Create Get Firebase Auth User
+      await auth.createUserWithEmailAndPassword(
+          email: _email, password: _password);
+
+      //Success
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => NaviHome()));
+    } on FirebaseAuthException catch (error) {
+      Fluttertoast.showToast(
+        msg: error.message,
+        gravity: ToastGravity.TOP,
+      );
+    }
   }
 }
 //   _signInWithGoogle() async {
