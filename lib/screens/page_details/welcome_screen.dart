@@ -51,7 +51,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               RoundedButton(
                 title: 'Anmelden',
                 colour: Colors.lightBlueAccent,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/anmelden_screen');
+                },
               ),
               RoundedButton(
                 title: 'Registrieren',

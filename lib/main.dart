@@ -1,8 +1,11 @@
+import 'package:csm/screens/page_details/anmelden_screen.dart';
 import 'package:csm/screens/page_details/audio.dart';
 import 'package:csm/screens/page_details/faith.dart';
 import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
+import 'package:csm/screens/page_details/reset_password.dart';
 import 'package:csm/screens/viewmodels/eventsViewModel.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'screens/page_details/navihome.dart';
 import 'package:csm/screens/page_details/eventslist.dart';
@@ -12,7 +15,11 @@ import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/page_details/welcome_screen.dart';
 import 'package:csm/screens/page_details/registration_screen.dart';
 
-void main() => runApp(CSM());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(CSM());
+}
 
 class CSM extends StatelessWidget {
   @override
@@ -42,6 +49,8 @@ class CSM extends StatelessWidget {
         '/eventsview': (context) => EventsViewModel(),
         '/welcome_screen': (context) => WelcomeScreen(),
         '/register_screen': (context) => RegistrationScreen(),
+        '/anmelden_screen': (context) => AnmeldenScreen(),
+        '/reset': (context) => ResetScreen(),
       },
     );
   }

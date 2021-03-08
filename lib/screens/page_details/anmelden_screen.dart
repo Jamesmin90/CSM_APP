@@ -1,4 +1,3 @@
-import 'package:csm/screens/page_details/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +7,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'navihome.dart';
 
-class RegistrationScreen extends StatefulWidget {
+class AnmeldenScreen extends StatefulWidget {
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _AnmeldenScreenState createState() => _AnmeldenScreenState();
 }
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _AnmeldenScreenState extends State<AnmeldenScreen> {
   String _email, _password;
   final auth = FirebaseAuth.instance;
   //final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -41,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Column(
               children: <Widget>[
                 Text(
-                  'Registrierung',
+                  'Anmelden',
                   style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.w700,
@@ -85,28 +84,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 8.0),
-                TextField(
-                  style: TextStyle(color: Colors.white),
-                  onChanged: (value) {
-                    //Do something with the user input.
-                  },
-                  decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Name',
-                      icon: Icon(
-                        Icons.supervised_user_circle_outlined,
-                        color: Colors.white,
-                      )),
+                TextButton(
+                  onPressed: () => Navigator.pushNamed(context, '/reset'),
+                  child: Text(
+                    'Passwort vergessen?',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 SizedBox(
-                  height: 24.0,
+                  height: 5.0,
                 ),
                 RoundedButton(
-                  title: 'registrieren',
+                  title: 'Anmelden',
                   colour: Colors.blueAccent,
                   onPressed: () {
                     auth
-                        .createUserWithEmailAndPassword(
+                        .signInWithEmailAndPassword(
                             email: _email, password: _password)
                         .then((_) {
                       Navigator.of(context).pushReplacement(
@@ -145,15 +138,3 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 }
-//   _signInWithGoogle() async {
-//     final GoogleSignInAccount googleUser = await googleSignIn.signIn();
-//     final GoogleSignInAuthentication googleAuth =
-//         await googleUser.authentication;
-
-//     final AuthCredential credential = GoogleAuthProvider.getCredential(
-//         idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
-
-//     final FirebaseUser user =
-//         (await firebaseAuth.signInWithCredential(credential)).user;
-//   }
-// }

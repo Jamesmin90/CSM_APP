@@ -1,4 +1,5 @@
 import 'package:csm/screens/components/custom_list_tile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/components/buildlink.dart';
@@ -10,6 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -53,7 +55,13 @@ class _HomeState extends State<Home> {
               CustomListTile(Icons.person, 'Profile', () => {}),
               CustomListTile(Icons.notifications, 'Notifications', () => {}),
               CustomListTile(Icons.settings, 'Settings', () => {}),
-              CustomListTile(Icons.lock, 'Log Out', () => {}),
+              CustomListTile(
+                  Icons.lock,
+                  'Log Out',
+                  () => {
+                        auth.signOut(),
+                        Navigator.pushNamed(context, '/'),
+                      }),
             ],
           ),
         ),
