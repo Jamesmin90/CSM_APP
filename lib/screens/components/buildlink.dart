@@ -18,7 +18,7 @@ class BuildLink extends StatelessWidget {
             width: double.infinity,
             decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-            child: FlatButton(
+            child: TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '$page');
               },

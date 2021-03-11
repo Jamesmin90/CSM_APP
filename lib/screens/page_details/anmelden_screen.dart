@@ -4,8 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/rounded_button.dart';
 import 'package:csm/screens/components/constants.dart';
-//import 'package:fluttertoast/fluttertoast.dart';
-import 'package:toast/toast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AnmeldenScreen extends StatefulWidget {
   @override
@@ -134,16 +133,13 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => NaviHome()));
     } on FirebaseAuthException catch (error) {
-      Toast.show(error.message, context,
-          duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-
-      // Fluttertoast.showToast(
-      //     msg: error.message,
-      //     toastLength: Toast.LENGTH_SHORT,
-      //     gravity: ToastGravity.TOP,
-      //     timeInSecForIosWeb: 1,
-      //     textColor: Colors.white,
-      //     fontSize: 16.0);
+      Fluttertoast.showToast(
+          msg: error.message,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 }
