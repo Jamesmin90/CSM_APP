@@ -12,7 +12,27 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
+  bool isAuth = false;
   @override
+  void initState() {
+    super.initState();
+    // detects when your is signed in
+    auth.authStateChanges().listen((User user) {
+      if (user != null) {
+        print('User signed in: $user.');
+        setState(() {
+          isAuth = true;
+        });
+      } else {
+        setState(() {
+          isAuth = false;
+        });
+      }
+    }, onError: (err) {
+      print("Error signing in: $err");
+    });
+  }
+
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
@@ -40,14 +60,7 @@ class _HomeState extends State<Home> {
                           height: 100,
                         ),
                       ),
-                      Container(
-                        child: FlatButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/welcome_screen');
-                          },
-                          child: Container(),
-                        ),
-                      )
+                      signin_signout(),
                     ],
                   ),
                 ),
@@ -55,13 +68,6 @@ class _HomeState extends State<Home> {
               CustomListTile(Icons.person, 'Profile', () => {}),
               CustomListTile(Icons.notifications, 'Notifications', () => {}),
               CustomListTile(Icons.settings, 'Settings', () => {}),
-              CustomListTile(
-                  Icons.lock,
-                  'Log Out',
-                  () => {
-                        auth.signOut(),
-                        Navigator.pushNamed(context, '/'),
-                      }),
             ],
           ),
         ),
@@ -70,19 +76,21 @@ class _HomeState extends State<Home> {
         slivers: [
           SliverAppBar(
             iconTheme: IconThemeData(color: Color.fromRGBO(250, 255, 255, 1)),
-            expandedHeight: 200.0,
+            expandedHeight: MediaQuery.of(context).size.height / 4,
             floating: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Transform.translate(
-                offset: Offset(-13, 0),
-                child: Text(
-                  'Christian Students in München',
-                  style: TextStyle(fontSize: 15),
+                offset: Offset(-42, 0),
+                child: FittedBox(
+                  child: Text(
+                    'Christian Students in München',
+                    // style: TextStyle(fontSize: 15),
+                  ),
                 ),
               ),
               background: Transform.translate(
-                offset: Offset(-80.0, 0.0),
+                offset: Offset(-75.0, -20.0),
                 child: Container(
                   width: 0.0,
                   height: 50.0,
@@ -132,5 +140,63 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
+  }
+
+  // function to sign in or sign out
+  signin_signout() {
+    if (isAuth == false) {
+      return TextButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/welcome_screen');
+        },
+        child: Row(children: [
+          Container(
+            child: Icon(
+              Icons.login_outlined,
+              color: Colors.white,
+            ),
+            alignment: Alignment.bottomLeft,
+          ),
+          SizedBox(
+            width: 5.0,
+          ),
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              "Log in",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ]),
+      );
+    } else if (isAuth == true) {
+      return TextButton(
+        onPressed: () {
+          auth.signOut();
+          Navigator.pushNamed(context, '/');
+        },
+        child: Row(children: [
+          Container(
+            child: Icon(
+              Icons.lock_outlined,
+              color: Colors.white,
+            ),
+            alignment: Alignment.bottomLeft,
+          ),
+          SizedBox(
+            width: 5.0,
+          ),
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              "Log out",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ]),
+      );
+    }
   }
 }

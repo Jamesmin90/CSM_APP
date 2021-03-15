@@ -1,4 +1,5 @@
 import 'package:csm/screens/components/events_button.dart';
+import 'package:csm/screens/components/events_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/buildlinkevents.dart';
@@ -45,7 +46,8 @@ class _EventsViewModelState extends State<EventsViewModel> {
                         children: [
                           titleSection(title: this.events.title),
                           check_login(),
-                          textSection(text: this.events.info)
+                          response(),
+                          textSection(text: this.events.info),
                         ],
                       ),
                       //)
@@ -117,6 +119,29 @@ class _EventsViewModelState extends State<EventsViewModel> {
     } else {
       return Text("bitte einloggen, um RSVP zu machen");
     }
+  }
+
+  response() {
+    return Container(
+        height: MediaQuery.of(context).size.height / 8,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 30.0,
+            ),
+            Container(
+              child: EventsResponseI(),
+              height: 100,
+              width: 150,
+            ),
+            Container(
+              child: EventsResponseB(),
+              height: 100,
+              width: 150,
+            ),
+          ],
+        ));
   }
 
   Widget textSection({
