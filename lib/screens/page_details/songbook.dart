@@ -7,10 +7,7 @@ class Songbook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Song Book"),
-      ),
-      body: WebViewContainer('https://www.csmuenchen.de/topics', 'Song Book'),
+      body: WebViewContainer('https://songbase.life', 'Song Book'),
     );
   }
 }

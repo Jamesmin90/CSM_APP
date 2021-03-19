@@ -1,4 +1,6 @@
 import 'package:csm/screens/components/custom_list_tile.dart';
+// import 'package:csm/screens/push_notification/locator.dart';
+// import 'package:csm/screens/push_notification/push_notification_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/constants.dart';
@@ -13,6 +15,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
   bool isAuth = false;
+  // final PushNotificationService _pushNotificationService =
+  //     locator<PushNotificationService>();
   @override
   void initState() {
     super.initState();
@@ -31,11 +35,11 @@ class _HomeState extends State<Home> {
     }, onError: (err) {
       print("Error signing in: $err");
     });
+
+    // handleStartUpLogic();
   }
 
   Widget build(BuildContext context) {
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
     return Scaffold(
       endDrawer: Container(
         width: MediaQuery.of(context).copyWith().size.height / 3,
@@ -65,8 +69,9 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              CustomListTile(Icons.person, 'Profile', () => {}),
-              CustomListTile(Icons.notifications, 'Notifications', () => {}),
+              signin_profile(),
+              CustomListTile(Icons.notifications, 'Notifications',
+                  () => {Navigator.pushNamed(context, '/notification')}),
               CustomListTile(Icons.settings, 'Settings', () => {}),
             ],
           ),
@@ -81,11 +86,12 @@ class _HomeState extends State<Home> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Transform.translate(
-                offset: Offset(-42, 0),
+                offset: Offset(-20, 0),
                 child: FittedBox(
+                  alignment: Alignment.center,
                   child: Text(
                     'Christian Students in München',
-                    // style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 15),
                   ),
                 ),
               ),
@@ -143,6 +149,7 @@ class _HomeState extends State<Home> {
   }
 
   // function to sign in or sign out
+  // ignore: non_constant_identifier_names
   signin_signout() {
     if (isAuth == false) {
       return TextButton(
@@ -199,4 +206,22 @@ class _HomeState extends State<Home> {
       );
     }
   }
+
+  // ignore: non_constant_identifier_names
+  signin_profile() {
+    if (isAuth == true) {
+      return CustomListTile(
+          Icons.person,
+          'Profile',
+          () => {
+                Navigator.pushNamed(context, '/profile'),
+              });
+    } else if (isAuth == false) {
+      return Text("");
+    }
+  }
+
+  // Future handleStartUpLogic() async {
+  //   await _pushNotificationService.initialise();
+  // }
 }

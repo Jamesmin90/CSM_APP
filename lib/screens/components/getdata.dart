@@ -9,7 +9,8 @@ class Getdata {
   Getdata(this.url);
 
   Future<List<Card>> getData() async {
-    var data = await http.get(url);
+    var newUrl = Uri.parse(url);
+    var data = await http.get(newUrl);
 
     var jsonData = jsonDecode(data.body);
 
@@ -33,7 +34,8 @@ class GetdataEvents {
   GetdataEvents(this.url);
 
   Future<List<CardEvents>> getData() async {
-    var data = await http.get(url);
+    var newUrl = Uri.parse(url);
+    var data = await http.get(newUrl);
 
     var jsonData = jsonDecode(data.body);
 

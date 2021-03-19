@@ -6,7 +6,7 @@ class Audio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebViewContainer('https://www.csmuenchen.de', 'Audio'),
+      body: WebViewContainer('https://www.csmuenchen.de/new-page', 'Audio'),
     );
   }
 }

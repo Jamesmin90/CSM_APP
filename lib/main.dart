@@ -1,11 +1,17 @@
 import 'package:csm/screens/page_details/anmelden_screen.dart';
 import 'package:csm/screens/page_details/audio.dart';
+import 'package:csm/screens/page_details/delete_user.dart';
 import 'package:csm/screens/page_details/faith.dart';
+import 'package:csm/screens/page_details/newemail.dart';
+import 'package:csm/screens/page_details/newpass.dart';
 import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
+import 'package:csm/screens/page_details/profile.dart';
 import 'package:csm/screens/page_details/reset_password.dart';
+import 'package:csm/screens/push_notification/messaging_widget.dart';
 import 'package:csm/screens/viewmodels/eventsViewModel.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'screens/page_details/navihome.dart';
 import 'package:csm/screens/page_details/eventslist.dart';
@@ -15,9 +21,18 @@ import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/page_details/welcome_screen.dart';
 import 'package:csm/screens/page_details/registration_screen.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  await Firebase.initializeApp();
+
+  print("Handling a background message: ${message.messageId}");
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(CSM());
 }
 
@@ -51,6 +66,11 @@ class CSM extends StatelessWidget {
         '/register_screen': (context) => RegistrationScreen(),
         '/anmelden_screen': (context) => AnmeldenScreen(),
         '/reset': (context) => ResetScreen(),
+        '/profile': (context) => Profile(),
+        '/newpass': (context) => NewPass(),
+        '/newemail': (context) => NewEmail(),
+        '/delete_user': (context) => DeleteUser(),
+        '/notification': (context) => MessagingWidget(),
       },
     );
   }

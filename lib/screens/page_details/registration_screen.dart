@@ -1,5 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/rounded_button.dart';
 import 'package:csm/screens/components/constants.dart';
@@ -13,8 +13,9 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  String _email, _password;
+  String _email, _password, _name;
   final auth = FirebaseAuth.instance;
+  String uid;
   //final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 TextField(
                   style: TextStyle(color: Colors.white),
                   onChanged: (value) {
-                    //Do something with the user input.
+                    setState(() {
+                      _name = value.trim();
+                    });
                   },
                   decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Name',
@@ -101,7 +104,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 RoundedButton(
                   title: 'registrieren',
                   colour: Colors.blueAccent,
-                  onPressed: () => _signup(_email, _password),
+                  onPressed: () => _signup(_email, _password, _name),
                 ),
                 SizedBox(height: 8.0),
                 Container(
@@ -131,32 +134,37 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  _signup(String _email, String _password) async {
-    try {
-      //Create Get Firebase Auth User
-      await auth.createUserWithEmailAndPassword(
-          email: _email, password: _password);
-
-      //Success
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => NaviHome()));
-    } on FirebaseAuthException catch (error) {
-      Fluttertoast.showToast(
-        msg: error.message,
-        gravity: ToastGravity.TOP,
-      );
+  _signup(String _email, String _password, String _name) async {
+    if (_name != null) {
+      try {
+        //Create Get Firebase Auth User
+        await auth.createUserWithEmailAndPassword(
+            email: _email, password: _password);
+        uid = auth.currentUser.uid;
+        await FirebaseFirestore.instance
+            .collection("User")
+            .doc(uid)
+            .set({uid: "$_name"});
+        //Success
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => NaviHome()));
+      } on FirebaseAuthException catch (error) {
+        Fluttertoast.showToast(
+            msg: error.message,
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    } else {
+      return Fluttertoast.showToast(
+          msg: "bitte Namen eingeben",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 }
-//   _signInWithGoogle() async {
-//     final GoogleSignInAccount googleUser = await googleSignIn.signIn();
-//     final GoogleSignInAuthentication googleAuth =
-//         await googleUser.authentication;
-
-//     final AuthCredential credential = GoogleAuthProvider.getCredential(
-//         idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
-
-//     final FirebaseUser user =
-//         (await firebaseAuth.signInWithCredential(credential)).user;
-//   }
-// }

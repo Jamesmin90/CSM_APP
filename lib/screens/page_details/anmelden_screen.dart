@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csm/screens/page_details/navihome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/rounded_button.dart';
 import 'package:csm/screens/components/constants.dart';
@@ -15,6 +17,19 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
   String _email, _password;
   final auth = FirebaseAuth.instance;
   //final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  @override
+  Future<void> initState() async {
+    super.initState();
+    // Get the token each time the application loads
+    String token = await FirebaseMessaging.instance.getToken();
+
+    // Save the initial token to the database
+    await saveTokenToDatabase(token);
+
+    // Any time the token refreshes, store this in the database too.
+    FirebaseMessaging.instance.onTokenRefresh.listen(saveTokenToDatabase);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,14 +147,25 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
       //Success
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) => NaviHome()));
-    } on FirebaseAuthException catch (error) {
-      Fluttertoast.showToast(
-          msg: error.message,
+    } on FirebaseAuthException catch (e) {
+      print('Failed with error code: ${e.code}');
+      print(e.message);
+      return Fluttertoast.showToast(
+          msg: e.message,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 1,
           textColor: Colors.white,
           fontSize: 16.0);
     }
+  }
+
+  Future<void> saveTokenToDatabase(String token) async {
+    // Assume user is logged in for this example
+    String userId = FirebaseAuth.instance.currentUser.uid;
+
+    await FirebaseFirestore.instance.collection('users').doc(userId).update({
+      'tokens': FieldValue.arrayUnion([token]),
+    });
   }
 }

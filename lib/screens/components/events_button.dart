@@ -15,11 +15,14 @@ class _EventsButtonState extends State<EventsButton> {
   var user;
   List<bool> isSelected = [false, false];
   String uid;
+  String postname;
   void initState() {
     super.initState();
     setState(() {
       user = auth.currentUser;
       uid = user.uid;
+      postname = widget.postname;
+      print(postname);
     });
   }
 
@@ -70,7 +73,7 @@ class _EventsButtonState extends State<EventsButton> {
   _interessiert() {
     FirebaseFirestore.instance
         .collection("events")
-        .doc(widget.postname)
+        .doc(postname)
         .collection("Interessiert")
         .doc(uid)
         .set({
@@ -79,7 +82,7 @@ class _EventsButtonState extends State<EventsButton> {
 
     FirebaseFirestore.instance
         .collection("events")
-        .doc(widget.postname)
+        .doc(postname)
         .collection("Besuchen")
         .doc(uid)
         .delete();
@@ -88,7 +91,7 @@ class _EventsButtonState extends State<EventsButton> {
   _besuchen() {
     FirebaseFirestore.instance
         .collection("events")
-        .doc(widget.postname)
+        .doc(postname)
         .collection("Besuchen")
         .doc(uid)
         .set({
@@ -97,7 +100,7 @@ class _EventsButtonState extends State<EventsButton> {
 
     FirebaseFirestore.instance
         .collection("events")
-        .doc(widget.postname)
+        .doc(postname)
         .collection("Interessiert")
         .doc(uid)
         .delete();

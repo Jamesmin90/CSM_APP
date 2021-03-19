@@ -25,10 +25,8 @@ class _EventsViewModelState extends State<EventsViewModel> {
             floating: true,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/images/milkyway.jpg',
-                fit: BoxFit.cover,
-              ),
+              background:
+                  Image.network(this.events.imageName, fit: BoxFit.cover),
               title: Text(
                 this.events.title,
                 style: TextStyle(fontFamily: "Poppins"),
@@ -47,6 +45,7 @@ class _EventsViewModelState extends State<EventsViewModel> {
                           titleSection(title: this.events.title),
                           check_login(),
                           response(),
+                          topic(text: this.events.topic),
                           textSection(text: this.events.info),
                         ],
                       ),
@@ -110,6 +109,7 @@ class _EventsViewModelState extends State<EventsViewModel> {
         ],
       );
 
+  // ignore: non_constant_identifier_names
   check_login() {
     if (auth.currentUser != null) {
       return buildHeader(
@@ -131,12 +131,12 @@ class _EventsViewModelState extends State<EventsViewModel> {
               width: 30.0,
             ),
             Container(
-              child: EventsResponseI(),
+              child: EventsResponseI(this.events.title),
               height: 100,
               width: 150,
             ),
             Container(
-              child: EventsResponseB(),
+              child: EventsResponseB(this.events.title),
               height: 100,
               width: 150,
             ),
@@ -149,6 +149,18 @@ class _EventsViewModelState extends State<EventsViewModel> {
   }) =>
       Container(
         padding: const EdgeInsets.all(32),
+        child: Text(
+          text,
+          softWrap: true,
+        ),
+      );
+
+  Widget topic({
+    @required String text,
+  }) =>
+      Container(
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.only(left: 33),
         child: Text(
           text,
           softWrap: true,

@@ -25,7 +25,7 @@ class BuildLinkEvents extends StatelessWidget {
             width: double.infinity,
             decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
-            child: FlatButton(
+            child: TextButton(
               onPressed: () {
                 Events events =
                     Events(imageName, title, info, date, time, topic, extra);
@@ -46,7 +46,7 @@ class BuildLinkEvents extends StatelessWidget {
           Container(
             width: double.infinity,
             height: MediaQuery.of(context).copyWith().size.height / 5,
-            child: FlatButton(
+            child: TextButton(
               onPressed: () {
                 Events events =
                     Events(imageName, title, info, date, time, topic, extra);

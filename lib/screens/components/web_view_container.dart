@@ -17,7 +17,7 @@ JavascriptChannel snackbarJavascriptChannel(BuildContext context) {
   return JavascriptChannel(
     name: 'Toaster',
     onMessageReceived: (JavascriptMessage message) {
-      Scaffold.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(message.message)),
       );
     },
@@ -71,7 +71,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
             onPressed: () async {
               var url = await controller.data.currentUrl();
               _favorites.add(url);
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Saved $url for later reading.')),
               );
             },
@@ -108,7 +108,7 @@ class NavigationControls extends StatelessWidget {
                       if (await controller.canGoBack()) {
                         controller.goBack();
                       } else {
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("No back history item")),
                         );
                         return;
@@ -123,7 +123,7 @@ class NavigationControls extends StatelessWidget {
                       if (await controller.canGoForward()) {
                         controller.goForward();
                       } else {
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                               content: Text("No forward history item")),
                         );
@@ -169,7 +169,7 @@ class Menu extends StatelessWidget {
                   MaterialPageRoute(builder: (BuildContext context) {
                 return FavoritesPage(favoritesAccessor());
               }));
-              Scaffold.of(context).removeCurrentSnackBar();
+              ScaffoldMessenger.of(context).removeCurrentSnackBar();
               if (newUrl != null) controller.data.loadUrl(newUrl);
             }
           },
