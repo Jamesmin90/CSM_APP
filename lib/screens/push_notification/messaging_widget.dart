@@ -33,21 +33,23 @@ class _MessagingWidgetState extends State<MessagingWidget> {
     }
   }
 
-  getToken() async {
-    String token = await _firebaseMessaging.getToken(
-      vapidKey:
-          "BNuds1CxDkro3u8LjHzc3PpXtL-cUqiLBhsTUWubuA20DsLJcq6KNyzr86AyY2hxcwtVMvz0b0nmCvwDHNLX_Mk",
-    );
-  }
+  // getToken() async {
+  //   String token = await _firebaseMessaging.getToken(
+  //     vapidKey:
+  //         "BNuds1CxDkro3u8LjHzc3PpXtL-cUqiLBhsTUWubuA20DsLJcq6KNyzr86AyY2hxcwtVMvz0b0nmCvwDHNLX_Mk",
+  //   );
+  // }
 
   final List<Message> messages = [];
 
   @override
-  Future<void> initState() async {
+  void initState() {
     super.initState();
     notificate();
-    getToken();
+    //getToken();
+  }
 
+  Future<void> fcm() async {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Got a message whilst in the foreground!');
       print('Message data: ${message.data}');
@@ -101,42 +103,6 @@ class _MessagingWidgetState extends State<MessagingWidget> {
         );
       }
     });
-
-    // _firebaseMessaging.configure(
-    //   onMessage: (Map<String, dynamic> message) async {
-    //     print("onMessage: $message");
-    //     final notification = message['notification'];
-    //     setState(() {
-    //       messages.add(Message(
-    //           title: notification['title'], body: notification['body']));
-    //     });
-    //   },
-    //   onBackgroundMessage: myBackgroundMessageHandler,
-    //   onLaunch: (Map<String, dynamic> message) async {
-    //     print("onLaunch: $message");
-    //     final notification = message['notification'];
-    //     setState(() {
-    //       messages.add(Message(
-    //           title: notification['title'], body: notification['body']));
-    //     });
-    //     Navigator.pushNamed(context, '/notification');
-    //   },
-    //   onResume: (Map<String, dynamic> message) async {
-    //     print("onResume: $message");
-    //     final notification = message['notification'];
-    //     setState(() {
-    //       messages.add(Message(
-    //           title: notification['title'], body: notification['body']));
-    //     });
-    //     Navigator.pushNamed(context, '/notification');
-    //   },
-    // );
-    // _firebaseMessaging.requestNotificationPermissions(
-    //     const IosNotificationSettings(sound: true, badge: true, alert: true));
-    // _firebaseMessaging.onIosSettingsRegistered
-    //     .listen((IosNotificationSettings settings) {
-    //   print("Settings registered: $settings");
-    // });
   }
 
   @override
@@ -144,8 +110,21 @@ class _MessagingWidgetState extends State<MessagingWidget> {
         appBar: AppBar(
           title: Text("Notifications"),
         ),
-        body: ListView(
-          children: messages.map(buildMessage).toList(),
+        body: FutureBuilder(
+          future: fcm(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              // Future hasn't finished yet, return a placeholder
+              return ListView(
+                children: messages.map(buildMessage).toList(),
+              );
+            }
+            print('Loading Complete: ${snapshot.data}');
+            return Text('Loading Complete: ${snapshot.data}');
+          },
+          // ListView(
+          //   children: messages.map(buildMessage).toList(),
+          // ),
         ),
       );
 

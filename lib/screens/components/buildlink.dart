@@ -14,7 +14,7 @@ class BuildLink extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.only(bottom: 5),
             width: double.infinity,
             decoration:
                 BoxDecoration(borderRadius: BorderRadius.circular(10.0)),

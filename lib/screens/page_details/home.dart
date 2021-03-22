@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Transform.translate(
-                offset: Offset(-20, 0),
+                offset: Offset(-13, 0),
                 child: FittedBox(
                   alignment: Alignment.center,
                   child: Text(
@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               background: Transform.translate(
-                offset: Offset(-75.0, -20.0),
+                offset: Offset(-75.0, 0.0),
                 child: Container(
                   width: 0.0,
                   height: 50.0,

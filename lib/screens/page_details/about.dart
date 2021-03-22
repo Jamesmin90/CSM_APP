@@ -20,36 +20,22 @@ class _AboutState extends State<About> {
             SliverAppBar(
               iconTheme: IconThemeData(color: Color.fromRGBO(0, 110, 160, 1)),
               backgroundColor: Colors.white,
-              expandedHeight: 140.0,
+              expandedHeight: 60.0,
               floating: false,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                   title: SizedBox(
-                height: 100,
+                height: 120,
                 child: ListView(
-                  //mainAxisAlignment: MainAxisAlignment.end,
-                  //crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Transform.translate(
                       offset: Offset(25, 21),
                       child: Text(
                         'Infos',
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(0, 110, 160, 1),
-                          fontSize: 18,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Transform.translate(
-                      offset: Offset(25, 10),
-                      child: Text(
-                        'About',
-                        style: TextStyle(
                           fontWeight: FontWeight.w900,
                           color: Color.fromRGBO(0, 110, 160, 1),
-                          fontSize: 45,
+                          fontSize: 18,
                         ),
                         textAlign: TextAlign.left,
                       ),

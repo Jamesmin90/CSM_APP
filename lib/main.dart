@@ -8,8 +8,10 @@ import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
 import 'package:csm/screens/page_details/profile.dart';
 import 'package:csm/screens/page_details/reset_password.dart';
+import 'package:csm/screens/page_details/trips_detail.dart';
 import 'package:csm/screens/push_notification/messaging_widget.dart';
 import 'package:csm/screens/viewmodels/eventsViewModel.dart';
+import 'package:csm/screens/viewmodels/tripsViewModel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(CSM());
 }
@@ -71,6 +73,8 @@ class CSM extends StatelessWidget {
         '/newemail': (context) => NewEmail(),
         '/delete_user': (context) => DeleteUser(),
         '/notification': (context) => MessagingWidget(),
+        '/trips_detail': (context) => TripsDetail(),
+        '/tripsview': (context) => TripsViewModel(),
       },
     );
   }

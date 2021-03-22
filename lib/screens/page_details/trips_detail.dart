@@ -1,14 +1,15 @@
+import 'package:csm/screens/components/buildlinktrips.dart';
 import 'package:flutter/material.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
-import 'package:csm/screens/components/buildlinkevents.dart';
 import 'package:csm/screens/components/getdata.dart';
 
-class EventsList extends StatefulWidget {
+class TripsDetail extends StatefulWidget {
   @override
-  _EventsList createState() => _EventsList();
+  _TripsDetail createState() => _TripsDetail();
 }
 
-class _EventsList extends State<EventsList> {
+class _TripsDetail extends State<TripsDetail> {
+  String heading;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,7 @@ class _EventsList extends State<EventsList> {
                     Transform.translate(
                       offset: Offset(25, 21),
                       child: Text(
-                        'Events',
+                        'Ausflüge',
                         style: TextStyle(
                           fontWeight: FontWeight.w900,
                           color: Color.fromRGBO(0, 110, 160, 1),
@@ -48,7 +49,7 @@ class _EventsList extends State<EventsList> {
               child: Container(
                 child: FutureBuilder(
                   future: GetdataEvents(
-                          'https://next.json-generator.com/api/json/get/V1p1XDNst')
+                          'https://next.json-generator.com/api/json/get/E1f7i_-V5')
                       .getData(),
                   builder: (context, snapshot) {
                     if (snapshot.data == null) {
@@ -60,7 +61,7 @@ class _EventsList extends State<EventsList> {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              BuildLinkEvents(
+                              BuildLinkTrips(
                                   snapshot.data[index].image,
                                   snapshot.data[index].title,
                                   snapshot.data[index].date,

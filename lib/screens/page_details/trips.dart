@@ -15,12 +15,12 @@ class Trips extends StatelessWidget {
             SliverAppBar(
               iconTheme: IconThemeData(color: Color.fromRGBO(0, 110, 160, 1)),
               backgroundColor: Colors.white,
-              expandedHeight: 140.0,
+              expandedHeight: 60.0,
               floating: false,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                   title: SizedBox(
-                height: 100,
+                height: 120,
                 child: ListView(
                   children: <Widget>[
                     Transform.translate(
@@ -28,25 +28,25 @@ class Trips extends StatelessWidget {
                       child: Text(
                         'Ausflüge',
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w900,
                           color: Color.fromRGBO(0, 110, 160, 1),
                           fontSize: 18,
                         ),
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    Transform.translate(
-                      offset: Offset(25, 10),
-                      child: Text(
-                        'Trips',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Color.fromRGBO(0, 110, 160, 1),
-                          fontSize: 45,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
+                    // Transform.translate(
+                    //   offset: Offset(25, 10),
+                    //   child: Text(
+                    //     'Trips',
+                    //     style: TextStyle(
+                    //       fontWeight: FontWeight.w900,
+                    //       color: Color.fromRGBO(0, 110, 160, 1),
+                    //       fontSize: 45,
+                    //     ),
+                    //     textAlign: TextAlign.left,
+                    //   ),
+                    // ),
                   ],
                 ),
               )),

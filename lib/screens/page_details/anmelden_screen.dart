@@ -17,9 +17,8 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
   String _email, _password;
   final auth = FirebaseAuth.instance;
   //final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  @override
-  Future<void> initState() async {
-    super.initState();
+
+  Future<void> getTok() async {
     // Get the token each time the application loads
     String token = await FirebaseMessaging.instance.getToken();
 
@@ -28,6 +27,12 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
 
     // Any time the token refreshes, store this in the database too.
     FirebaseMessaging.instance.onTokenRefresh.listen(saveTokenToDatabase);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTok();
   }
 
   @override
