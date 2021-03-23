@@ -1,11 +1,10 @@
 import 'package:csm/screens/components/custom_list_tile.dart';
-// import 'package:csm/screens/push_notification/locator.dart';
-// import 'package:csm/screens/push_notification/push_notification_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/components/buildlink.dart';
 import 'package:csm/screens/components/getdata.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -58,8 +57,10 @@ class _HomeState extends State<Home> {
                       Material(
                         elevation: 10,
                         borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                        child: Image.network(
-                          "https://i.imgur.com/b1XF5aP.png",
+                        child: CachedNetworkImage(
+                          imageUrl: "https://i.imgur.com/b1XF5aP.png",
+                          placeholder: _loader,
+                          errorWidget: _error,
                           width: 100,
                           height: 100,
                         ),
@@ -221,7 +222,16 @@ class _HomeState extends State<Home> {
     }
   }
 
-  // Future handleStartUpLogic() async {
-  //   await _pushNotificationService.initialise();
-  // }
+  Widget _loader(BuildContext context, String url) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _error(BuildContext context, String url, dynamic error) {
+    print(error);
+    return Center(
+      child: Icon(Icons.error_outline),
+    );
+  }
 }

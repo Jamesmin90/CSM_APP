@@ -1,6 +1,7 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class BuildLinkEvents extends StatelessWidget {
   final String imageName;
@@ -33,11 +34,13 @@ class BuildLinkEvents extends StatelessWidget {
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  '$imageName',
+                child: CachedNetworkImage(
+                  imageUrl: "$imageName",
                   fit: BoxFit.fitWidth,
                   height: MediaQuery.of(context).copyWith().size.height / 5,
                   width: double.infinity,
+                  placeholder: _loader,
+                  errorWidget: _error,
                 ),
               ),
             ),
@@ -65,6 +68,19 @@ class BuildLinkEvents extends StatelessWidget {
           //),
         ],
       ),
+    );
+  }
+
+  Widget _loader(BuildContext context, String url) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _error(BuildContext context, String url, dynamic error) {
+    print(error);
+    return Center(
+      child: Icon(Icons.error_outline),
     );
   }
 }

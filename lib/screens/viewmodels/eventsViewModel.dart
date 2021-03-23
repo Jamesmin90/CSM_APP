@@ -3,6 +3,7 @@ import 'package:csm/screens/components/events_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/buildlinkevents.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class EventsViewModel extends StatefulWidget {
   @override
@@ -25,8 +26,12 @@ class _EventsViewModelState extends State<EventsViewModel> {
             floating: true,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background:
-                  Image.network(this.events.imageName, fit: BoxFit.cover),
+              background: CachedNetworkImage(
+                imageUrl: this.events.imageName,
+                fit: BoxFit.cover,
+                placeholder: _loader,
+                errorWidget: _error,
+              ),
               title: Text(
                 this.events.title,
                 style: TextStyle(fontFamily: "Poppins"),
@@ -166,4 +171,16 @@ class _EventsViewModelState extends State<EventsViewModel> {
           softWrap: true,
         ),
       );
+  Widget _loader(BuildContext context, String url) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _error(BuildContext context, String url, dynamic error) {
+    print(error);
+    return Center(
+      child: Icon(Icons.error_outline),
+    );
+  }
 }

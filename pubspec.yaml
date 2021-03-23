@@ -27,7 +27,7 @@ dependencies:
   webview_flutter: ^2.0.2
   colorful_safe_area: ^0.2.1
   url_launcher: ^6.0.2
-  firebase_core: ^1.0.0
+  firebase_core: ^1.0.2
   firebase_auth: ^1.0.1
   fluttertoast: ^7.1.8
   cloud_firestore: ^1.0.1 

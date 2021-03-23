@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:csm/screens/components/buildlinktrips.dart';
 import 'package:csm/screens/components/events_button.dart';
 import 'package:csm/screens/components/events_response.dart';
@@ -25,8 +26,12 @@ class _TripsViewModelState extends State<TripsViewModel> {
             floating: true,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background:
-                  Image.network(this.trips.imageName, fit: BoxFit.cover),
+              background: CachedNetworkImage(
+                imageUrl: this.trips.imageName,
+                fit: BoxFit.cover,
+                placeholder: _loader,
+                errorWidget: _error,
+              ),
               title: Text(
                 this.trips.title,
                 style: TextStyle(fontFamily: "Poppins"),
@@ -166,4 +171,16 @@ class _TripsViewModelState extends State<TripsViewModel> {
           softWrap: true,
         ),
       );
+  Widget _loader(BuildContext context, String url) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _error(BuildContext context, String url, dynamic error) {
+    print(error);
+    return Center(
+      child: Icon(Icons.error_outline),
+    );
+  }
 }

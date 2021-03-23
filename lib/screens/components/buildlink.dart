@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class BuildLink extends StatelessWidget {
@@ -24,8 +25,10 @@ class BuildLink extends StatelessWidget {
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  '$imageName',
+                child: CachedNetworkImage(
+                  imageUrl: '$imageName',
+                  placeholder: _loader,
+                  errorWidget: _error,
                   fit: BoxFit.fitWidth,
                   height: MediaQuery.of(context).copyWith().size.height / 5,
                   width: double.infinity,
@@ -49,6 +52,19 @@ class BuildLink extends StatelessWidget {
           //),
         ],
       ),
+    );
+  }
+
+  Widget _loader(BuildContext context, String url) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _error(BuildContext context, String url, dynamic error) {
+    print(error);
+    return Center(
+      child: Icon(Icons.error_outline),
     );
   }
 }

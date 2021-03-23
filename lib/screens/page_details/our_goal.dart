@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:csm/screens/components/text_section.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:csm/screens/components/getdata.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 
 class Ourgoal extends StatelessWidget {
   @override
