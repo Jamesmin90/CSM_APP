@@ -14,8 +14,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
   bool isAuth = false;
-  // final PushNotificationService _pushNotificationService =
-  //     locator<PushNotificationService>();
+
   @override
   void initState() {
     super.initState();
@@ -39,9 +38,12 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final availableWidth = mediaQuery.size.width - 160;
+    final mSize = mediaQuery.size;
     return Scaffold(
       endDrawer: Container(
-        width: MediaQuery.of(context).copyWith().size.height / 3,
+        width: mediaQuery.copyWith().size.height / 3,
         child: Drawer(
           child: ListView(
             children: [
@@ -82,36 +84,32 @@ class _HomeState extends State<Home> {
         slivers: [
           SliverAppBar(
             iconTheme: IconThemeData(color: Color.fromRGBO(250, 255, 255, 1)),
-            expandedHeight: MediaQuery.of(context).size.height / 4,
+            expandedHeight: mediaQuery.size.height / 4,
             floating: false,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Transform.translate(
-                offset: Offset(-13, 0),
-                child: FittedBox(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Christian Students in München',
-                    style: TextStyle(fontSize: 15),
+              titlePadding: EdgeInsets.all(0.0),
+              title: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: availableWidth,
                   ),
-                ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(
+                        start: mediaQuery.size.width / 65),
+                    child: Container(
+                      //color: Colors.green,
+                      child: Text(
+                        'Christian Students in München',
+                        style: TextStyle(fontSize: mediaQuery.size.height / 55),
+                      ),
+                    ),
+                  )),
+              background: Container(
+                padding: EdgeInsetsDirectional.fromSTEB(mSize.width / 65,
+                    mSize.height / 15, mSize.height / 15, mSize.height / 15),
+                child: Image.asset('assets/images/csm-white.png'),
+                margin: EdgeInsetsDirectional.only(end: mSize.width / 4),
               ),
-              background: Transform.translate(
-                offset: Offset(-75.0, 0.0),
-                child: Container(
-                  width: 0.0,
-                  height: 50.0,
-                  //constraints: BoxConstraints.expand(height: 100, width: 100),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: csm_white,
-                        //fit: BoxFit.cover,
-                        scale: 5),
-                  ),
-                ),
-              ),
-
-              //fit: BoxFit.cover),
             ),
           ),
           SliverFillRemaining(

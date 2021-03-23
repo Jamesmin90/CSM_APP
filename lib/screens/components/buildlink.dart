@@ -40,12 +40,17 @@ class BuildLink extends StatelessWidget {
           Container(
             width: double.infinity,
             height: MediaQuery.of(context).copyWith().size.height / 5,
-            child: Text(
-              '$text',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 50),
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '$page');
+              },
+              child: Text(
+                '$text',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 50),
+              ),
             ),
             alignment: Alignment(-.8, -.8),
           ),
