@@ -10,11 +10,14 @@ import 'package:csm/screens/page_details/profile.dart';
 import 'package:csm/screens/page_details/reset_password.dart';
 import 'package:csm/screens/page_details/trips_detail.dart';
 import 'package:csm/screens/push_notification/messaging_widget.dart';
+import 'package:csm/screens/viewmodels/to_do_list.dart';
 import 'package:csm/screens/viewmodels/eventsViewModel.dart';
+import 'package:csm/screens/viewmodels/todos.dart';
 import 'package:csm/screens/viewmodels/tripsViewModel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'screens/page_details/navihome.dart';
 import 'package:csm/screens/page_details/eventslist.dart';
 import 'package:csm/screens/page_details/trips.dart';
@@ -41,41 +44,45 @@ void main() async {
 class CSM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color.fromRGBO(0, 110, 160, 1),
-        fontFamily: 'Poppins',
-        appBarTheme:
-            AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
-        textTheme: TextTheme(
-          headline6: TitleTextStyle,
-          bodyText2: Body1TextStyle,
+    return ChangeNotifierProvider(
+      create: (context) => TodosProvider(),
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Color.fromRGBO(0, 110, 160, 1),
+          fontFamily: 'Poppins',
+          appBarTheme:
+              AppBarTheme(textTheme: TextTheme(headline6: AppBarTextStyle)),
+          textTheme: TextTheme(
+            headline6: TitleTextStyle,
+            bodyText2: Body1TextStyle,
+          ),
         ),
+        title: "CSM!",
+        initialRoute: '/',
+        routes: {
+          '/': (context) => NaviHome(),
+          '/events': (context) => EventsList(),
+          '/trips': (context) => Trips(),
+          '/about': (context) => About(),
+          '/ourstory': (context) => Ourstory(),
+          '/faith': (context) => Faith(),
+          '/ourgoal': (context) => Ourgoal(),
+          '/test': (context) => Audio(),
+          '/eventsview': (context) => EventsViewModel(),
+          '/welcome_screen': (context) => WelcomeScreen(),
+          '/register_screen': (context) => RegistrationScreen(),
+          '/anmelden_screen': (context) => AnmeldenScreen(),
+          '/reset': (context) => ResetScreen(),
+          '/profile': (context) => Profile(),
+          '/newpass': (context) => NewPass(),
+          '/newemail': (context) => NewEmail(),
+          '/delete_user': (context) => DeleteUser(),
+          '/notification': (context) => MessagingWidget(),
+          '/trips_detail': (context) => TripsDetail(),
+          '/tripsview': (context) => TripsViewModel(),
+          '/to_do_list': (context) => ToDoList(),
+        },
       ),
-      title: "CSM!",
-      initialRoute: '/',
-      routes: {
-        '/': (context) => NaviHome(),
-        '/events': (context) => EventsList(),
-        '/trips': (context) => Trips(),
-        '/about': (context) => About(),
-        '/ourstory': (context) => Ourstory(),
-        '/faith': (context) => Faith(),
-        '/ourgoal': (context) => Ourgoal(),
-        '/test': (context) => Audio(),
-        '/eventsview': (context) => EventsViewModel(),
-        '/welcome_screen': (context) => WelcomeScreen(),
-        '/register_screen': (context) => RegistrationScreen(),
-        '/anmelden_screen': (context) => AnmeldenScreen(),
-        '/reset': (context) => ResetScreen(),
-        '/profile': (context) => Profile(),
-        '/newpass': (context) => NewPass(),
-        '/newemail': (context) => NewEmail(),
-        '/delete_user': (context) => DeleteUser(),
-        '/notification': (context) => MessagingWidget(),
-        '/trips_detail': (context) => TripsDetail(),
-        '/tripsview': (context) => TripsViewModel(),
-      },
     );
   }
 }

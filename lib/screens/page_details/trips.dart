@@ -35,18 +35,6 @@ class Trips extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                     ),
-                    // Transform.translate(
-                    //   offset: Offset(25, 10),
-                    //   child: Text(
-                    //     'Trips',
-                    //     style: TextStyle(
-                    //       fontWeight: FontWeight.w900,
-                    //       color: Color.fromRGBO(0, 110, 160, 1),
-                    //       fontSize: 45,
-                    //     ),
-                    //     textAlign: TextAlign.left,
-                    //   ),
-                    // ),
                   ],
                 ),
               )),

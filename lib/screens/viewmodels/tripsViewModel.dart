@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:csm/screens/components/buildlinktrips.dart';
-import 'package:csm/screens/components/events_button.dart';
-import 'package:csm/screens/components/events_response.dart';
+import 'package:csm/screens/components/trips_button.dart';
+import 'package:csm/screens/components/trips_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -119,7 +119,7 @@ class _TripsViewModelState extends State<TripsViewModel> {
     if (auth.currentUser != null) {
       return buildHeader(
         title: 'Interessiert oder Besuchen',
-        child: EventsButton(this.trips.title),
+        child: TripsButton(this.trips.title),
       );
     } else {
       return Text("bitte einloggen, um RSVP zu machen");
@@ -136,12 +136,12 @@ class _TripsViewModelState extends State<TripsViewModel> {
               width: 30.0,
             ),
             Container(
-              child: EventsResponseI(this.trips.title),
+              child: TripsResponseI(this.trips.title),
               height: 100,
               width: 150,
             ),
             Container(
-              child: EventsResponseB(this.trips.title),
+              child: TripsResponseB(this.trips.title),
               height: 100,
               width: 150,
             ),
