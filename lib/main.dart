@@ -47,6 +47,7 @@ class CSM extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TodosProvider(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: Color.fromRGBO(0, 110, 160, 1),
           fontFamily: 'Poppins',

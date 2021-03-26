@@ -64,7 +64,7 @@ class Profile extends StatelessWidget {
               ),
               profileButton(
                 icon: Icons.delete,
-                title: 'Email-Adresse ändern',
+                title: 'Profil löschen',
                 colour: Color.fromRGBO(115, 232, 255, 1),
                 onPressed: () {
                   Navigator.pushNamed(context, '/delete_user');

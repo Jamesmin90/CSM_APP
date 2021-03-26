@@ -1,7 +1,9 @@
 import 'package:csm/screens/components/todo.dart';
+import 'package:csm/screens/viewmodels/edit_todo_page.dart';
 import 'package:csm/screens/viewmodels/todos.dart';
 import 'package:csm/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 class TodoWidget extends StatelessWidget {
@@ -13,9 +15,34 @@ class TodoWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
+  Widget build(BuildContext context) => ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Slidable(
+          actionPane: SlidableDrawerActionPane(),
+          key: Key(todo.id),
+          actions: [
+            IconSlideAction(
+              color: Colors.green,
+              onTap: () => editTodo(context, todo),
+              caption: 'Edit',
+              icon: Icons.edit,
+            )
+          ],
+          secondaryActions: [
+            IconSlideAction(
+              color: Colors.red,
+              caption: 'Delete',
+              onTap: () => deleteTodo(context, todo),
+              icon: Icons.delete,
+            )
+          ],
+          child: buildTodo(context),
+        ),
+      );
+
+  Widget buildTodo(BuildContext context) {
+    return GestureDetector(
+      onTap: () => editTodo(context, todo),
       child: Container(
         color: Colors.white,
         padding: EdgeInsets.all(20),
@@ -65,4 +92,17 @@ class TodoWidget extends StatelessWidget {
       ),
     );
   }
+
+  void deleteTodo(BuildContext context, Todo todo) {
+    final provider = Provider.of<TodosProvider>(context, listen: false);
+    provider.removeTodo(todo);
+
+    Utils.showSnackBar(context, 'Deleted the task');
+  }
+
+  void editTodo(BuildContext context, Todo todo) => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => EditTodoPage(todo: todo),
+        ),
+      );
 }

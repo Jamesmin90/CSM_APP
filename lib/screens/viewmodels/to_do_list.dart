@@ -1,5 +1,6 @@
 import 'package:csm/screens/components/firebase_api.dart';
 import 'package:csm/screens/components/todo.dart';
+import 'package:csm/screens/viewmodels/add_todo_dialog_widget.dart';
 import 'package:csm/screens/viewmodels/completed_list_widget.dart';
 import 'package:csm/screens/viewmodels/todo_list_widget.dart';
 import 'package:csm/screens/viewmodels/todos.dart';
@@ -21,7 +22,7 @@ class _ToDoListState extends State<ToDoList> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Corona Check List"),
+        title: Text("Check List"),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
@@ -50,10 +51,11 @@ class _ToDoListState extends State<ToDoList> {
               return Center(child: CircularProgressIndicator());
             default:
               if (snapshot.hasError) {
+                //print(snapshot);
                 return buildText('Something Went Wrong Try later');
               } else {
                 final todos = snapshot.data;
-
+                //print(todos);
                 final provider = Provider.of<TodosProvider>(context);
                 provider.setTodos(todos);
 
@@ -62,13 +64,25 @@ class _ToDoListState extends State<ToDoList> {
           }
         },
       ),
-    );
-  }
-}
-
-Widget buildText(String text) => Center(
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 24, color: Colors.white),
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        backgroundColor: Colors.black,
+        onPressed: () => showDialog(
+          context: context,
+          builder: (context) => AddTodoDialogWidget(),
+          barrierDismissible: false,
+        ),
+        child: Icon(Icons.add),
       ),
     );
+  }
+
+  Widget buildText(String text) => Center(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 24, color: Theme.of(context).primaryColor),
+        ),
+      );
+}

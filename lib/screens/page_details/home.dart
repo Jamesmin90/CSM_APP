@@ -1,7 +1,6 @@
 import 'package:csm/screens/components/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/components/buildlink.dart';
 import 'package:csm/screens/components/getdata.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -76,6 +75,7 @@ class _HomeState extends State<Home> {
               CustomListTile(Icons.notifications, 'Notifications',
                   () => {Navigator.pushNamed(context, '/notification')}),
               CustomListTile(Icons.settings, 'Settings', () => {}),
+              covid_test(),
             ],
           ),
         ),
@@ -214,6 +214,19 @@ class _HomeState extends State<Home> {
           'Profile',
           () => {
                 Navigator.pushNamed(context, '/profile'),
+              });
+    } else if (isAuth == false) {
+      return Text("");
+    }
+  }
+
+  covid_test() {
+    if (isAuth == true) {
+      return CustomListTile(
+          Icons.coronavirus,
+          'Covid Test',
+          () => {
+                Navigator.pushNamed(context, '/to_do_list'),
               });
     } else if (isAuth == false) {
       return Text("");
