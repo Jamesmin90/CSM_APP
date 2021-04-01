@@ -31,6 +31,7 @@ class _NaviHomeState extends State<NaviHome> {
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        fixedColor: Color.fromRGBO(0, 110, 160, 1),
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         onTap: onTappedBar,
@@ -39,35 +40,30 @@ class _NaviHomeState extends State<NaviHome> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Color.fromRGBO(0, 110, 160, 1),
             ),
             label: ('Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.book,
-              color: Color.fromRGBO(0, 110, 160, 1),
             ),
             label: ('Bible'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.format_list_bulleted,
-              color: Color.fromRGBO(0, 110, 160, 1),
             ),
             label: ('Outline'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.library_music,
-              color: Color.fromRGBO(0, 110, 160, 1),
             ),
             label: ('Songbook'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.music_note,
-              color: Color.fromRGBO(0, 110, 160, 1),
             ),
             label: ('Audio'),
           ),

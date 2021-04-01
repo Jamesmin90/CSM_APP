@@ -14,6 +14,8 @@ class _TripsButtonState extends State<TripsButton> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   var user;
   List<bool> isSelected = [false, false];
+  bool iSelected = false;
+  bool bSelected = false;
   String uid;
   String postname;
   void initState() {
@@ -29,8 +31,16 @@ class _TripsButtonState extends State<TripsButton> {
   _TripsButtonState(String postname);
   data2Collection(int index) {
     if (index == 0) {
+      setState(() {
+        iSelected = !iSelected;
+        bSelected = false;
+      });
       return _interessiert();
     } else if (index == 1) {
+      setState(() {
+        iSelected = false;
+        bSelected = !bSelected;
+      });
       return _besuchen();
     }
   }
@@ -71,38 +81,56 @@ class _TripsButtonState extends State<TripsButton> {
   }
 
   _interessiert() {
-    FirebaseFirestore.instance
-        .collection("trips")
-        .doc(postname)
-        .collection("Interessiert")
-        .doc(uid)
-        .set({
-      uid: "Interessiert",
-    });
+    if (iSelected == true) {
+      FirebaseFirestore.instance
+          .collection("trips")
+          .doc(postname)
+          .collection("Interessiert")
+          .doc(uid)
+          .set({
+        uid: "Interessiert",
+      });
 
-    FirebaseFirestore.instance
-        .collection("trips")
-        .doc(postname)
-        .collection("Besuchen")
-        .doc(uid)
-        .delete();
+      FirebaseFirestore.instance
+          .collection("trips")
+          .doc(postname)
+          .collection("Besuchen")
+          .doc(uid)
+          .delete();
+    } else {
+      FirebaseFirestore.instance
+          .collection("trips")
+          .doc(postname)
+          .collection("Interessiert")
+          .doc(uid)
+          .delete();
+    }
   }
 
   _besuchen() {
-    FirebaseFirestore.instance
-        .collection("trips")
-        .doc(postname)
-        .collection("Besuchen")
-        .doc(uid)
-        .set({
-      uid: "Besuchen",
-    });
+    if (bSelected == true) {
+      FirebaseFirestore.instance
+          .collection("trips")
+          .doc(postname)
+          .collection("Besuchen")
+          .doc(uid)
+          .set({
+        uid: "Besuchen",
+      });
 
-    FirebaseFirestore.instance
-        .collection("trips")
-        .doc(postname)
-        .collection("Interessiert")
-        .doc(uid)
-        .delete();
+      FirebaseFirestore.instance
+          .collection("trips")
+          .doc(postname)
+          .collection("Interessiert")
+          .doc(uid)
+          .delete();
+    } else {
+      FirebaseFirestore.instance
+          .collection("trips")
+          .doc(postname)
+          .collection("Besuchen")
+          .doc(uid)
+          .delete();
+    }
   }
 }
