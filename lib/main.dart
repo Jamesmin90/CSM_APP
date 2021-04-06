@@ -1,3 +1,4 @@
+import 'package:csm/screens/components/user_topic_info.dart';
 import 'package:csm/screens/page_details/anmelden_screen.dart';
 import 'package:csm/screens/page_details/audio.dart';
 import 'package:csm/screens/page_details/delete_user.dart';
@@ -8,8 +9,9 @@ import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
 import 'package:csm/screens/page_details/profile.dart';
 import 'package:csm/screens/page_details/reset_password.dart';
+import 'package:csm/screens/page_details/settings.dart';
 import 'package:csm/screens/page_details/trips_detail.dart';
-import 'package:csm/screens/push_notification/messaging_widget.dart';
+import 'package:csm/screens/push_notification/notification.dart';
 import 'package:csm/screens/viewmodels/to_do_list.dart';
 import 'package:csm/screens/viewmodels/eventsViewModel.dart';
 import 'package:csm/screens/viewmodels/todos.dart';
@@ -30,7 +32,14 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
-
+  RemoteMessage initialMessage =
+      await FirebaseMessaging.instance.getInitialMessage();
+  if (initialMessage.data['view'] == 'Events') {
+    return EventsList();
+  }
+  if (initialMessage.data['view'] == 'Trips') {
+    return Trips();
+  }
   print("Handling a background message: ${message.messageId}");
 }
 
@@ -38,6 +47,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  await UserTopicInfo.init();
   runApp(CSM());
 }
 
@@ -78,10 +89,11 @@ class CSM extends StatelessWidget {
           '/newpass': (context) => NewPass(),
           '/newemail': (context) => NewEmail(),
           '/delete_user': (context) => DeleteUser(),
-          '/notification': (context) => MessagingWidget(),
+          '/notification': (context) => NotificationTopic(),
           '/trips_detail': (context) => TripsDetail(),
           '/tripsview': (context) => TripsViewModel(),
           '/to_do_list': (context) => ToDoList(),
+          '/settings': (context) => Settings(),
         },
       ),
     );

@@ -16,3 +16,9 @@ class CardEvents {
   CardEvents(this.image, this.title, this.info, this.date, this.time,
       this.topic, this.extra);
 }
+
+class CardTopic {
+  String topic;
+
+  CardTopic(this.topic);
+}

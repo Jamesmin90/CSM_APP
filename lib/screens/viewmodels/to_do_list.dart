@@ -22,7 +22,7 @@ class _ToDoListState extends State<ToDoList> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Check List"),
+        title: Text("To do List"),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,

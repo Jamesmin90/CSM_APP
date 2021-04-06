@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csm/screens/components/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:csm/screens/components/buildlink.dart';
 import 'package:csm/screens/components/getdata.dart';
@@ -13,6 +15,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
   bool isAuth = false;
+  Future<void> saveTokenToDatabase2() async {
+    String token = await FirebaseMessaging.instance.getToken();
+    await saveTokenToDatabase(token);
+    FirebaseMessaging.instance.onTokenRefresh.listen(saveTokenToDatabase);
+  }
 
   @override
   void initState() {
@@ -32,8 +39,8 @@ class _HomeState extends State<Home> {
     }, onError: (err) {
       print("Error signing in: $err");
     });
-
-    // handleStartUpLogic();
+    saveTokenToDatabase2();
+    handleNotification();
   }
 
   Widget build(BuildContext context) {
@@ -72,10 +79,9 @@ class _HomeState extends State<Home> {
                 ),
               ),
               signin_profile(),
-              CustomListTile(Icons.notifications, 'Notifications',
-                  () => {Navigator.pushNamed(context, '/notification')}),
-              CustomListTile(Icons.settings, 'Settings', () => {}),
-              covid_test(),
+              CustomListTile(Icons.settings, 'Settings',
+                  () => {Navigator.pushNamed(context, '/settings')}),
+              to_do_list(),
             ],
           ),
         ),
@@ -220,11 +226,11 @@ class _HomeState extends State<Home> {
     }
   }
 
-  covid_test() {
+  to_do_list() {
     if (isAuth == true) {
       return CustomListTile(
-          Icons.coronavirus,
-          'Covid Test',
+          Icons.check_box_outlined,
+          'To do List',
           () => {
                 Navigator.pushNamed(context, '/to_do_list'),
               });
@@ -244,5 +250,39 @@ class _HomeState extends State<Home> {
     return Center(
       child: Icon(Icons.error_outline),
     );
+  }
+
+  Future<void> saveTokenToDatabase(String token) async {
+    // Assume user is logged in for this example
+    String userId = FirebaseAuth.instance.currentUser.uid;
+
+    await FirebaseFirestore.instance.collection('User').doc(userId).update({
+      'tokens': FieldValue.arrayUnion([token]),
+    });
+  }
+
+  Future handleNotification() async {
+    RemoteMessage initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+
+    if (initialMessage?.data['view'] == 'Events') {
+      Navigator.pushNamed(context, '/events');
+    }
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      if (message.data['view'] == 'Events') {
+        Navigator.pushNamed(context, '/events');
+      }
+    });
+
+    if (initialMessage?.data['view'] == 'Trips') {
+      Navigator.pushNamed(context, '/trips');
+    }
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      if (message.data['view'] == 'Trips') {
+        Navigator.pushNamed(context, '/trips');
+      }
+    });
   }
 }

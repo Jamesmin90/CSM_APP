@@ -28,6 +28,31 @@ class Getdata {
   }
 }
 
+class Getdatanotification {
+  String url;
+
+  Getdatanotification(this.url);
+
+  Future<List<CardTopic>> getData() async {
+    var newUrl = Uri.parse(url);
+    var data = await http.get(newUrl);
+
+    var jsonData = jsonDecode(data.body);
+
+    List<CardTopic> cards = [];
+
+    for (var c in jsonData) {
+      CardTopic card = CardTopic(c["topic"]);
+
+      cards.add(card);
+    }
+
+    print(cards.length);
+
+    return cards;
+  }
+}
+
 class GetdataEvents {
   String url;
 
