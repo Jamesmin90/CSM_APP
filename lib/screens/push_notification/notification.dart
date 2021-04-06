@@ -119,32 +119,3 @@ class _NotificationTopicState extends State<NotificationTopic> {
     }
   }
 }
-
-// FutureBuilder(
-//             future: Getdatanotification(
-//                     "https://next.json-generator.com/api/json/get/Nk0co9br5")
-//                 .getData(),
-//             builder: (context, snapshot) {
-//               if (snapshot.data == null) {
-//                 return Center(child: CircularProgressIndicator());
-//               } else {
-//                 return ListView.builder(
-//                   itemCount: snapshot.data.length,
-//                   itemBuilder: (context, index) {
-//                     return Column(
-//                       crossAxisAlignment: CrossAxisAlignment.stretch,
-//                       children: [
-//                         SwitchListTile(
-//                           title: Text(snapshot.data[index].topic),
-//                           value: _topic,
-//                           onChanged: (bool value) => setState(() {
-//                             _topic = value;
-//                             setTopic(snapshot.data[index].topic);
-//                           }),
-//                         )
-//                       ],
-//                     );
-//                   },
-//                 );
-//               }
-//             })
