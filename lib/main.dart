@@ -10,6 +10,7 @@ import 'package:csm/screens/page_details/our_story.dart';
 import 'package:csm/screens/page_details/profile.dart';
 import 'package:csm/screens/page_details/reset_password.dart';
 import 'package:csm/screens/page_details/settings.dart';
+import 'package:csm/screens/page_details/social_media.dart';
 import 'package:csm/screens/page_details/trips_detail.dart';
 import 'package:csm/screens/push_notification/notification.dart';
 import 'package:csm/screens/viewmodels/to_do_list.dart';
@@ -94,6 +95,7 @@ class CSM extends StatelessWidget {
           '/tripsview': (context) => TripsViewModel(),
           '/to_do_list': (context) => ToDoList(),
           '/settings': (context) => Settings(),
+          '/social_media': (context) => SocialMedia(),
         },
       ),
     );
