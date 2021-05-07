@@ -19,7 +19,7 @@ class FirebaseApi {
   // }
 
   static Future<String> createTodo(Todo todo) async {
-    String uid = FirebaseAuth.instance.currentUser.uid;
+    String uid = FirebaseAuth.instance.currentUser!.uid;
 
     FirebaseFirestore.instance
         .collection('Users')
@@ -28,7 +28,7 @@ class FirebaseApi {
         .then((DocumentSnapshot documentSnapshot) => {
               if (documentSnapshot.exists)
                 {
-                  todo.name = documentSnapshot.data()[uid] as String,
+                  todo.name = documentSnapshot.data()![uid] as String,
                 }
             });
 
@@ -47,7 +47,7 @@ class FirebaseApi {
   }
 
   static Stream<List<Todo>> readTodos() {
-    String uid = FirebaseAuth.instance.currentUser.uid;
+    String uid = FirebaseAuth.instance.currentUser!.uid;
     return FirebaseFirestore.instance
         .collection('trips')
         .doc('Covid Tests')
@@ -57,7 +57,7 @@ class FirebaseApi {
   }
 
   static Future updateTodo(Todo todo) async {
-    String uid = FirebaseAuth.instance.currentUser.uid;
+    String uid = FirebaseAuth.instance.currentUser!.uid;
     final docTodo = FirebaseFirestore.instance
         .collection('trips')
         .doc('Covid Tests')
@@ -68,7 +68,7 @@ class FirebaseApi {
   }
 
   static Future deleteTodo(Todo todo) async {
-    String uid = FirebaseAuth.instance.currentUser.uid;
+    String uid = FirebaseAuth.instance.currentUser!.uid;
     final docTodo = FirebaseFirestore.instance
         .collection('trips')
         .doc('Covid Tests')

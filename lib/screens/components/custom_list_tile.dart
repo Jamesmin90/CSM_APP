@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomListTile extends StatelessWidget {
   final IconData icon;
   final String text;
-  final Function onTap;
+  final VoidCallback onTap;
 
   CustomListTile(this.icon, this.text, this.onTap);
 

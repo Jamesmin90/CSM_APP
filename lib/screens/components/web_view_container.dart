@@ -69,8 +69,8 @@ class _WebViewContainerState extends State<WebViewContainer> {
         if (controller.hasData) {
           return FloatingActionButton(
             onPressed: () async {
-              var url = await controller.data.currentUrl();
-              _favorites.add(url);
+              var url = await controller.data!.currentUrl();
+              _favorites.add(url!);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Saved $url for later reading.')),
               );
@@ -97,7 +97,7 @@ class NavigationControls extends StatelessWidget {
           (BuildContext context, AsyncSnapshot<WebViewController> snapshot) {
         final bool webViewReady =
             snapshot.connectionState == ConnectionState.done;
-        final WebViewController controller = snapshot.data;
+        final WebViewController controller = snapshot.data!;
         return Row(
           children: <Widget>[
             IconButton(
@@ -161,7 +161,7 @@ class Menu extends StatelessWidget {
         return PopupMenuButton<String>(
           onSelected: (String value) async {
             if (value == 'Email link') {
-              var url = await controller.data.currentUrl();
+              var url = await controller.data!.currentUrl();
               await launch(
                   'mailto:?subject=Check out this cool Wikipedia page&body=$url');
             } else {
@@ -170,7 +170,7 @@ class Menu extends StatelessWidget {
                 return FavoritesPage(favoritesAccessor());
               }));
               ScaffoldMessenger.of(context).removeCurrentSnackBar();
-              if (newUrl != null) controller.data.loadUrl(newUrl);
+              if (newUrl != null) controller.data!.loadUrl(newUrl);
             }
           },
           itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[

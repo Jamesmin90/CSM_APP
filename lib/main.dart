@@ -29,12 +29,12 @@ import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/page_details/welcome_screen.dart';
 import 'package:csm/screens/page_details/registration_screen.dart';
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
   RemoteMessage initialMessage =
-      await FirebaseMessaging.instance.getInitialMessage();
+      (await FirebaseMessaging.instance.getInitialMessage());
   if (initialMessage.data['view'] == 'Events') {
     return EventsList();
   }

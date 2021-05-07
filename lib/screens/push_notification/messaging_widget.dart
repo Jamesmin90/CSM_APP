@@ -3,8 +3,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class MessagingWidget extends StatefulWidget {
-  MessagingWidget({Key key}) : super(key: key);
-
   @override
   _MessagingWidgetState createState() => _MessagingWidgetState();
 }
@@ -72,7 +70,7 @@ class _MessagingWidgetState extends State<MessagingWidget> {
 // Get any messages which caused the application to open from
     // a terminated state.
     RemoteMessage initialMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
+        (await FirebaseMessaging.instance.getInitialMessage());
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen
     if (initialMessage?.data['type'] == 'events') {

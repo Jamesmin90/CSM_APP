@@ -5,8 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 // ignore: must_be_immutable
 class NewPass extends StatefulWidget {
-  NewPass({Key key}) : super(key: key);
-
   @override
   _NewPassState createState() => _NewPassState();
 }
@@ -26,7 +24,7 @@ class _NewPassState extends State<NewPass> {
   }
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String validatePassword(String value) {
+  String? validatePassword(String value) {
     if (value.isEmpty) {
       return "* Required";
     } else if (value.length < 6) {
@@ -114,12 +112,12 @@ class _NewPassState extends State<NewPass> {
       String password, String email, String oldpassword) async {
     //Create an instance of the current user.
     try {
-      EmailAuthCredential credential =
+      AuthCredential credential =
           EmailAuthProvider.credential(email: email, password: oldpassword);
-      auth.currentUser
+      auth.currentUser!
           .reauthenticateWithCredential(credential)
           .whenComplete(() => {
-                FirebaseAuth.instance.currentUser
+                FirebaseAuth.instance.currentUser!
                     .updatePassword(password)
                     .then((_) {
                   print("Successfully changed password");

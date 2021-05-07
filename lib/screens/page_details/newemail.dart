@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class NewEmail extends StatefulWidget {
-  NewEmail({Key key}) : super(key: key);
-
   @override
   _NewEmailState createState() => _NewEmailState();
 }
@@ -90,12 +88,12 @@ class _NewEmailState extends State<NewEmail> {
   void _changeEmail(String password, String email, String newemail) async {
     //Create an instance of the current user.
     try {
-      EmailAuthCredential credential =
+      AuthCredential credential =
           EmailAuthProvider.credential(email: email, password: email);
-      auth.currentUser
+      auth.currentUser!
           .reauthenticateWithCredential(credential)
           .whenComplete(() => {
-                FirebaseAuth.instance.currentUser
+                FirebaseAuth.instance.currentUser!
                     .updateEmail(newemail)
                     .then((_) {
                   print("Successfully changed email");

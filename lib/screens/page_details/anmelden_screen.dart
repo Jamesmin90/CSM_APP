@@ -14,13 +14,13 @@ class AnmeldenScreen extends StatefulWidget {
 }
 
 class _AnmeldenScreenState extends State<AnmeldenScreen> {
-  String _email, _password;
+  late String _email, _password;
   final auth = FirebaseAuth.instance;
   //final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Future<void> getTok() async {
     // Get the token each time the application loads
-    String token = await FirebaseMessaging.instance.getToken();
+    String token = (await FirebaseMessaging.instance.getToken())!;
 
     // Save the initial token to the database
     await saveTokenToDatabase(token);
@@ -167,7 +167,7 @@ class _AnmeldenScreenState extends State<AnmeldenScreen> {
 
   Future<void> saveTokenToDatabase(String token) async {
     // Assume user is logged in for this example
-    String userId = FirebaseAuth.instance.currentUser.uid;
+    String userId = FirebaseAuth.instance.currentUser!.uid;
 
     await FirebaseFirestore.instance.collection('users').doc(userId).update({
       'tokens': FieldValue.arrayUnion([token]),

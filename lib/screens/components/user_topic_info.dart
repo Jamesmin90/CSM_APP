@@ -8,5 +8,5 @@ class UserTopicInfo {
   static Future setBool(bool value, String topic) async =>
       await _info.setBool(topic, value);
 
-  static bool getBool(String key) => _info.getBool(key);
+  static bool? getBool(String key) => _info.getBool(key);
 }

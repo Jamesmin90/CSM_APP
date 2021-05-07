@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
   bool isAuth = false;
   Future<void> saveTokenToDatabase2() async {
-    String token = await FirebaseMessaging.instance.getToken();
+    String token = (await FirebaseMessaging.instance.getToken())!;
     await saveTokenToDatabase(token);
     FirebaseMessaging.instance.onTokenRefresh.listen(saveTokenToDatabase);
   }
@@ -254,7 +254,7 @@ class _HomeState extends State<Home> {
 
   Future<void> saveTokenToDatabase(String token) async {
     // Assume user is logged in for this example
-    String userId = FirebaseAuth.instance.currentUser.uid;
+    String userId = FirebaseAuth.instance.currentUser!.uid;
 
     await FirebaseFirestore.instance.collection('User').doc(userId).update({
       'tokens': FieldValue.arrayUnion([token]),
@@ -263,7 +263,7 @@ class _HomeState extends State<Home> {
 
   Future handleNotification() async {
     RemoteMessage initialMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
+        (await FirebaseMessaging.instance.getInitialMessage())!;
 
     if (initialMessage?.data['view'] == 'Events') {
       Navigator.pushNamed(context, '/events');

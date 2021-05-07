@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class EventsPageHeader implements SliverPersistentHeaderDelegate {
-  EventsPageHeader({this.minExtent, this.maxExtent, this.title});
+  EventsPageHeader(
+      {@required this.minExtent,
+      @required this.maxExtent,
+      @required this.title});
   final double minExtent;
   final double maxExtent;
   final String title;

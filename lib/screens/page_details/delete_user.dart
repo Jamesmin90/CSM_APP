@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class DeleteUser extends StatefulWidget {
-  DeleteUser({Key key}) : super(key: key);
-
   @override
   _DeleteUserState createState() => _DeleteUserState();
 }
@@ -85,12 +83,12 @@ class _DeleteUserState extends State<DeleteUser> {
 
   authenticateUser(String email, String password) async {
     try {
-      EmailAuthCredential credential =
+      AuthCredential credential =
           EmailAuthProvider.credential(email: email, password: password);
-      auth.currentUser
+      auth.currentUser!
           .reauthenticateWithCredential(credential)
           .whenComplete(() => {
-                FirebaseAuth.instance.currentUser.delete(),
+                FirebaseAuth.instance.currentUser!.delete(),
                 print("use deleted"),
                 Navigator.pushNamed(context, "/"),
               });

@@ -7,10 +7,10 @@ class Todo {
   bool isDone;
   String name;
   Todo({
-    @required this.title,
-    this.name,
+    required this.title,
+    required this.name,
     this.description = '',
-    this.id,
+    required this.id,
     this.isDone = false,
   });
 

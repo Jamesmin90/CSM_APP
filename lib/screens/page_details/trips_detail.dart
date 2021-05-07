@@ -9,7 +9,7 @@ class TripsDetail extends StatefulWidget {
 }
 
 class _TripsDetail extends State<TripsDetail> {
-  String heading;
+  late String heading;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

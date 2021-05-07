@@ -140,7 +140,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         //Create Get Firebase Auth User
         await auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
-        uid = auth.currentUser.uid;
+        uid = auth.currentUser!.uid;
         await FirebaseFirestore.instance
             .collection("User")
             .doc(uid)
