@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TripsButton extends StatefulWidget {
-  final String postname;
+  final String? postname;
 
   TripsButton(this.postname);
   @override
@@ -16,8 +16,8 @@ class _TripsButtonState extends State<TripsButton> {
   List<bool> isSelected = [false, false];
   bool iSelected = false;
   bool bSelected = false;
-  String uid;
-  String postname;
+  String? uid;
+  String? postname;
   void initState() {
     super.initState();
     setState(() {
@@ -28,7 +28,7 @@ class _TripsButtonState extends State<TripsButton> {
     });
   }
 
-  _TripsButtonState(String postname);
+  _TripsButtonState(String? postname);
   data2Collection(int index) {
     if (index == 0) {
       setState(() {
@@ -88,7 +88,7 @@ class _TripsButtonState extends State<TripsButton> {
           .collection("Interessiert")
           .doc(uid)
           .set({
-        uid: "Interessiert",
+        uid!: "Interessiert",
       });
 
       FirebaseFirestore.instance
@@ -115,7 +115,7 @@ class _TripsButtonState extends State<TripsButton> {
           .collection("Besuchen")
           .doc(uid)
           .set({
-        uid: "Besuchen",
+        uid!: "Besuchen",
       });
 
       FirebaseFirestore.instance

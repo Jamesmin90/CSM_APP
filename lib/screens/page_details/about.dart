@@ -50,7 +50,7 @@ class _AboutState extends State<About> {
                   future: Getdata(
                           'https://next.json-generator.com/api/json/get/Ey63angqt')
                       .getData(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return Center(child: CircularProgressIndicator());
                     } else {

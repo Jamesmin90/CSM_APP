@@ -24,8 +24,8 @@ class _NewPassState extends State<NewPass> {
   }
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String? validatePassword(String value) {
-    if (value.isEmpty) {
+  String? validatePassword(String? value) {
+    if (value!.isEmpty) {
       return "* Required";
     } else if (value.length < 6) {
       return "Password should be atleast 6 characters";
@@ -125,6 +125,7 @@ class _NewPassState extends State<NewPass> {
                 }).catchError((error) {
                   print("Password can't be changed" + error.toString());
                   //This might happen, when the wrong password is in, the user isn't found, or if the user hasn't logged in recently.
+                  // ignore: return_of_invalid_type_from_catch_error
                   return Fluttertoast.showToast(
                       msg: error.message,
                       toastLength: Toast.LENGTH_LONG,
@@ -136,7 +137,7 @@ class _NewPassState extends State<NewPass> {
               });
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(
-          msg: e.message,
+          msg: e.message!,
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 1,

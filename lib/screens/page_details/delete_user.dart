@@ -94,7 +94,7 @@ class _DeleteUserState extends State<DeleteUser> {
               });
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(
-          msg: e.message,
+          msg: e.message!,
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 1,

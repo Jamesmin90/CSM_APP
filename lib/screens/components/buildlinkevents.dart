@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class BuildLinkEvents extends StatelessWidget {
-  final String imageName;
-  final String title;
-  final String info;
-  final String date;
-  final String time;
-  final String topic;
-  final String extra;
+  final String? imageName;
+  final String? title;
+  final String? info;
+  final String? date;
+  final String? time;
+  final String? topic;
+  final String? extra;
 
   BuildLinkEvents(this.imageName, this.title, this.date, this.time, this.info,
       this.topic, this.extra);
@@ -86,13 +86,13 @@ class BuildLinkEvents extends StatelessWidget {
 }
 
 class Events {
-  final String imageName;
-  final String title;
-  final String info;
-  final String date;
-  final String time;
-  final String topic;
-  final String extra;
+  final String? imageName;
+  final String? title;
+  final String? info;
+  final String? date;
+  final String? time;
+  final String? topic;
+  final String? extra;
   Events(this.imageName, this.title, this.info, this.date, this.time,
       this.topic, this.extra);
 }

@@ -13,9 +13,9 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  String _email, _password, _name;
+  String? _email, _password, _name;
   final auth = FirebaseAuth.instance;
-  String uid;
+  String? uid;
   //final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -134,23 +134,23 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  _signup(String _email, String _password, String _name) async {
+  _signup(String? _email, String? _password, String? _name) async {
     if (_name != null) {
       try {
         //Create Get Firebase Auth User
         await auth.createUserWithEmailAndPassword(
-            email: _email, password: _password);
+            email: _email!, password: _password!);
         uid = auth.currentUser!.uid;
         await FirebaseFirestore.instance
             .collection("User")
             .doc(uid)
-            .set({uid: "$_name"});
+            .set({uid!: "$_name"});
         //Success
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => NaviHome()));
       } on FirebaseAuthException catch (error) {
         Fluttertoast.showToast(
-            msg: error.message,
+            msg: error.message!,
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.TOP,
             timeInSecForIosWeb: 1,

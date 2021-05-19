@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csm/screens/components/todo.dart';
 import 'package:csm/utils.dart';
@@ -28,7 +30,7 @@ class FirebaseApi {
         .then((DocumentSnapshot documentSnapshot) => {
               if (documentSnapshot.exists)
                 {
-                  todo.name = documentSnapshot.data()![uid] as String,
+                  todo.name = documentSnapshot.data()![uid] as String?,
                 }
             });
 
@@ -53,7 +55,8 @@ class FirebaseApi {
         .doc('Covid Tests')
         .collection(uid)
         .snapshots()
-        .transform(Utils.transformer(Todo.fromJson));
+        .transform(Utils.transformer(Todo.fromJson)
+            as StreamTransformer<QuerySnapshot, List<Todo>>);
   }
 
   static Future updateTodo(Todo todo) async {

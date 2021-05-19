@@ -9,7 +9,7 @@ class TripsDetail extends StatefulWidget {
 }
 
 class _TripsDetail extends State<TripsDetail> {
-  late String heading;
+  String? heading;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +51,7 @@ class _TripsDetail extends State<TripsDetail> {
                   future: GetdataEvents(
                           'https://next.json-generator.com/api/json/get/E1f7i_-V5')
                       .getData(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return Center(child: CircularProgressIndicator());
                     } else {

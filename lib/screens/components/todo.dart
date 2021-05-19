@@ -1,21 +1,19 @@
-import 'package:flutter/cupertino.dart';
-
 class Todo {
-  String title;
-  String id;
-  String description;
-  bool isDone;
-  String name;
+  String? title;
+  String? id;
+  String? description;
+  bool? isDone;
+  String? name;
   Todo({
-    required this.title,
-    required this.name,
+    this.title,
+    this.name,
     this.description = '',
-    required this.id,
+    this.id,
     this.isDone = false,
   });
 
-  static Todo fromJson(Map<String, dynamic> json) => Todo(
-        name: json['name'],
+  static Todo fromJson(Map<String, dynamic>? json) => Todo(
+        name: json!['name'],
         title: json['title'],
         description: json['description'],
         id: json['id'],

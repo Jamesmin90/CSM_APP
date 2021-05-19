@@ -57,7 +57,7 @@ class _MessagingWidgetState extends State<MessagingWidget> {
         final notification = message.notification;
         setState(() {
           messages
-              .add(Message(title: notification.title, body: notification.body));
+              .add(Message(title: notification!.title, body: notification.body));
         });
       }
     });
@@ -69,7 +69,7 @@ class _MessagingWidgetState extends State<MessagingWidget> {
     );
 // Get any messages which caused the application to open from
     // a terminated state.
-    RemoteMessage initialMessage =
+    RemoteMessage? initialMessage =
         (await FirebaseMessaging.instance.getInitialMessage());
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen
@@ -127,7 +127,7 @@ class _MessagingWidgetState extends State<MessagingWidget> {
       );
 
   Widget buildMessage(Message message) => ListTile(
-        title: Text(message.title),
-        subtitle: Text(message.body),
+        title: Text(message.title!),
+        subtitle: Text(message.body!),
       );
 }

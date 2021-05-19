@@ -45,7 +45,7 @@ class Trips extends StatelessWidget {
                   future: Getdata(
                           'https://next.json-generator.com/api/json/get/V1n98p7qK')
                       .getData(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return Center(child: CircularProgressIndicator());
                     } else {

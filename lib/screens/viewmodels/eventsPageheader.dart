@@ -5,9 +5,9 @@ import 'package:flutter/rendering.dart';
 
 class EventsPageHeader implements SliverPersistentHeaderDelegate {
   EventsPageHeader(
-      {@required this.minExtent,
-      @required this.maxExtent,
-      @required this.title});
+      {required this.minExtent,
+      required this.maxExtent,
+      required this.title});
   final double minExtent;
   final double maxExtent;
   final String title;
@@ -61,11 +61,11 @@ class EventsPageHeader implements SliverPersistentHeaderDelegate {
     return true;
   }
 
-  PersistentHeaderShowOnScreenConfiguration get showOnScreenConfiguration =>
+  PersistentHeaderShowOnScreenConfiguration? get showOnScreenConfiguration =>
       null;
-  TickerProvider get vsync => null;
-  OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
+  TickerProvider? get vsync => null;
+  OverScrollHeaderStretchConfiguration? get stretchConfiguration => null;
 
   @override
-  FloatingHeaderSnapConfiguration get snapConfiguration => null;
+  FloatingHeaderSnapConfiguration? get snapConfiguration => null;
 }

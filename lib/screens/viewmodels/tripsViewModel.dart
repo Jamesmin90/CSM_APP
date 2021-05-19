@@ -11,12 +11,12 @@ class TripsViewModel extends StatefulWidget {
 }
 
 class _TripsViewModelState extends State<TripsViewModel> {
-  Trips trips;
+  late Trips trips;
   final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    RouteSettings settings = ModalRoute.of(context).settings;
-    trips = settings.arguments;
+    RouteSettings settings = ModalRoute.of(context)!.settings;
+    trips = settings.arguments as Trips;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -27,13 +27,13 @@ class _TripsViewModelState extends State<TripsViewModel> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: CachedNetworkImage(
-                imageUrl: this.trips.imageName,
+                imageUrl: this.trips.imageName!,
                 fit: BoxFit.cover,
                 placeholder: _loader,
                 errorWidget: _error,
               ),
               title: Text(
-                this.trips.title,
+                this.trips.title!,
                 style: TextStyle(fontFamily: "Poppins"),
               ),
             ),
@@ -47,11 +47,11 @@ class _TripsViewModelState extends State<TripsViewModel> {
                     children: <Widget>[
                       Column(
                         children: [
-                          titleSection(title: this.trips.title),
+                          titleSection(title: this.trips.title!),
                           check_login(),
                           response(),
-                          topic(text: this.trips.topic),
-                          textSection(text: this.trips.info),
+                          topic(text: this.trips.topic!),
+                          textSection(text: this.trips.info!),
                         ],
                       ),
                       //)
@@ -67,7 +67,7 @@ class _TripsViewModelState extends State<TripsViewModel> {
   }
 
   Widget titleSection({
-    @required String title,
+    required String title,
   }) =>
       Container(
         padding: const EdgeInsets.all(32),
@@ -88,20 +88,20 @@ class _TripsViewModelState extends State<TripsViewModel> {
                     ),
                   ),
                   Text(
-                    this.trips.date,
+                    this.trips.date!,
                     style: TextStyle(color: Colors.grey[500]),
                   ),
                 ],
               ),
             ),
-            Text(this.trips.time)
+            Text(this.trips.time!)
           ],
         ),
       );
 
   Widget buildHeader({
-    @required Widget child,
-    @required String title,
+    required Widget child,
+    required String title,
   }) =>
       Column(
         children: [
@@ -150,7 +150,7 @@ class _TripsViewModelState extends State<TripsViewModel> {
   }
 
   Widget textSection({
-    @required String text,
+    required String text,
   }) =>
       Container(
         padding: const EdgeInsets.all(32),
@@ -161,7 +161,7 @@ class _TripsViewModelState extends State<TripsViewModel> {
       );
 
   Widget topic({
-    @required String text,
+    required String text,
   }) =>
       Container(
         alignment: Alignment.centerLeft,

@@ -101,6 +101,7 @@ class _NewEmailState extends State<NewEmail> {
                 }).catchError((error) {
                   print("Password can't be changed" + error.toString());
                   //This might happen, when the wrong password is in, the user isn't found, or if the user hasn't logged in recently.
+                  // ignore: return_of_invalid_type_from_catch_error
                   return Fluttertoast.showToast(
                       msg: error.message,
                       toastLength: Toast.LENGTH_LONG,
@@ -112,7 +113,7 @@ class _NewEmailState extends State<NewEmail> {
               });
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(
-          msg: e.message,
+          msg: e.message!,
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 1,

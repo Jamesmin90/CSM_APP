@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class TripsResponseI extends StatelessWidget {
-  final String postname;
+  final String? postname;
   TripsResponseI(this.postname);
 
   // final QuerySnapshot snapshot =
@@ -19,7 +19,7 @@ class TripsResponseI extends StatelessWidget {
           if (!snapshot.hasData) {
             return CircularProgressIndicator();
           }
-          final int icount = snapshot.data.size;
+          final int icount = snapshot.data!.size;
           return Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,7 @@ class TripsResponseI extends StatelessWidget {
 
 // ignore: must_be_immutable
 class TripsResponseB extends StatelessWidget {
-  final String postname;
+  final String? postname;
   TripsResponseB(this.postname);
 
   @override
@@ -51,7 +51,7 @@ class TripsResponseB extends StatelessWidget {
           if (!snapshot.hasData) {
             return CircularProgressIndicator();
           }
-          final int bcount = snapshot.data.size;
+          final int bcount = snapshot.data!.size;
           return Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

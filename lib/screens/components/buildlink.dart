@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class BuildLink extends StatelessWidget {
-  final String imageName;
-  final String page;
-  final String text;
+  final String? imageName;
+  final String? page;
+  final String? text;
 
   BuildLink(this.imageName, this.page, this.text);
   @override

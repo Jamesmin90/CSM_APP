@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
   bool isAuth = false;
   Future<void> saveTokenToDatabase2() async {
-    String token = (await FirebaseMessaging.instance.getToken())!;
+    String? token = (await FirebaseMessaging.instance.getToken());
     await saveTokenToDatabase(token);
     FirebaseMessaging.instance.onTokenRefresh.listen(saveTokenToDatabase);
   }
@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     // detects when your is signed in
-    auth.authStateChanges().listen((User user) {
+    auth.authStateChanges().listen((User? user) {
       if (user != null) {
         print('User signed in: $user.');
         setState(() {
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
                 future: Getdata(
                         'https://next.json-generator.com/api/json/get/VJmiHkpYF')
                     .getData(),
-                builder: (context, snapshot) {
+                builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.data == null) {
                     return Center(child: CircularProgressIndicator());
                   } else {
@@ -226,6 +226,7 @@ class _HomeState extends State<Home> {
     }
   }
 
+  // ignore: non_constant_identifier_names
   to_do_list() {
     if (isAuth == true) {
       return CustomListTile(
@@ -252,7 +253,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Future<void> saveTokenToDatabase(String token) async {
+  Future<void> saveTokenToDatabase(String? token) async {
     // Assume user is logged in for this example
     String userId = FirebaseAuth.instance.currentUser!.uid;
 
@@ -262,8 +263,8 @@ class _HomeState extends State<Home> {
   }
 
   Future handleNotification() async {
-    RemoteMessage initialMessage =
-        (await FirebaseMessaging.instance.getInitialMessage())!;
+    RemoteMessage? initialMessage =
+        (await FirebaseMessaging.instance.getInitialMessage());
 
     if (initialMessage?.data['view'] == 'Events') {
       Navigator.pushNamed(context, '/events');

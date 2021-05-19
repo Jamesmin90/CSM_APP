@@ -10,7 +10,7 @@ class Utils {
         ..showSnackBar(SnackBar(content: Text(text)));
 
   static StreamTransformer transformer<T>(
-          T Function(Map<String, dynamic> json) fromJson) =>
+          T Function(Map<String, dynamic>? json) fromJson) =>
       StreamTransformer<QuerySnapshot, List<T>>.fromHandlers(
         handleData: (QuerySnapshot data, EventSink<List<T>> sink) {
           final snaps = data.docs.map((doc) => doc.data()).toList();

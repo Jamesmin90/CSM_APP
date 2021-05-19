@@ -74,10 +74,10 @@ class Profile extends StatelessWidget {
   }
 
   Widget profileButton({
-    @required String title,
-    @required IconData icon,
-    @required Color colour,
-    @required Function onPressed,
+    required String title,
+    required IconData icon,
+    required Color colour,
+    required Function onPressed,
   }) =>
       Padding(
         padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -86,7 +86,7 @@ class Profile extends StatelessWidget {
           color: colour,
           borderRadius: BorderRadius.circular(30.0),
           child: MaterialButton(
-            onPressed: onPressed,
+            onPressed: onPressed as void Function()?,
             minWidth: 200.0,
             height: 50.0,
             child: Row(children: [

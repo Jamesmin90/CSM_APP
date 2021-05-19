@@ -51,7 +51,7 @@ class Ourgoal extends StatelessWidget {
                   future: Getdata(
                           'https://next.json-generator.com/api/json/get/NJ_N75fcF')
                       .getData(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return Center(child: CircularProgressIndicator());
                     } else {

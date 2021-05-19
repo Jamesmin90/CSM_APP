@@ -11,12 +11,12 @@ class EventsViewModel extends StatefulWidget {
 }
 
 class _EventsViewModelState extends State<EventsViewModel> {
-  Events events;
+  late Events events;
   final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    RouteSettings settings = ModalRoute.of(context).settings;
-    events = settings.arguments;
+    RouteSettings settings = ModalRoute.of(context)!.settings;
+    events = settings.arguments as Events;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -27,13 +27,13 @@ class _EventsViewModelState extends State<EventsViewModel> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: CachedNetworkImage(
-                imageUrl: this.events.imageName,
+                imageUrl: this.events.imageName!,
                 fit: BoxFit.cover,
                 placeholder: _loader,
                 errorWidget: _error,
               ),
               title: Text(
-                this.events.title,
+                this.events.title!,
                 style: TextStyle(fontFamily: "Poppins"),
               ),
             ),
@@ -47,11 +47,11 @@ class _EventsViewModelState extends State<EventsViewModel> {
                     children: <Widget>[
                       Column(
                         children: [
-                          titleSection(title: this.events.title),
+                          titleSection(title: this.events.title!),
                           check_login(),
                           response(),
-                          topic(text: this.events.topic),
-                          textSection(text: this.events.info),
+                          topic(text: this.events.topic!),
+                          textSection(text: this.events.info!),
                         ],
                       ),
                       //)
@@ -67,7 +67,7 @@ class _EventsViewModelState extends State<EventsViewModel> {
   }
 
   Widget titleSection({
-    @required String title,
+    required String title,
   }) =>
       Container(
         padding: const EdgeInsets.all(32),
@@ -88,20 +88,20 @@ class _EventsViewModelState extends State<EventsViewModel> {
                     ),
                   ),
                   Text(
-                    this.events.date,
+                    this.events.date!,
                     style: TextStyle(color: Colors.grey[500]),
                   ),
                 ],
               ),
             ),
-            Text(this.events.time)
+            Text(this.events.time!)
           ],
         ),
       );
 
   Widget buildHeader({
-    @required Widget child,
-    @required String title,
+    required Widget child,
+    required String title,
   }) =>
       Column(
         children: [
@@ -150,7 +150,7 @@ class _EventsViewModelState extends State<EventsViewModel> {
   }
 
   Widget textSection({
-    @required String text,
+    required String text,
   }) =>
       Container(
         padding: const EdgeInsets.all(32),
@@ -161,7 +161,7 @@ class _EventsViewModelState extends State<EventsViewModel> {
       );
 
   Widget topic({
-    @required String text,
+    required String text,
   }) =>
       Container(
         alignment: Alignment.centerLeft,

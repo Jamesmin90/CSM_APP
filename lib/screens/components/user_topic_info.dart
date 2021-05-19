@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserTopicInfo {
-  static SharedPreferences _info;
+  static late SharedPreferences _info;
 
   static Future init() async => _info = await SharedPreferences.getInstance();
 

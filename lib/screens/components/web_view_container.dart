@@ -32,7 +32,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
   _WebViewContainerState(this._url, this._title);
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
-  final Set<String> _favorites = Set<String>();
+  final Set<String?> _favorites = Set<String?>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +70,7 @@ class _WebViewContainerState extends State<WebViewContainer> {
           return FloatingActionButton(
             onPressed: () async {
               var url = await controller.data!.currentUrl();
-              _favorites.add(url!);
+              _favorites.add(url);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Saved $url for later reading.')),
               );
@@ -97,7 +97,7 @@ class NavigationControls extends StatelessWidget {
           (BuildContext context, AsyncSnapshot<WebViewController> snapshot) {
         final bool webViewReady =
             snapshot.connectionState == ConnectionState.done;
-        final WebViewController controller = snapshot.data!;
+        final WebViewController? controller = snapshot.data;
         return Row(
           children: <Widget>[
             IconButton(
@@ -105,7 +105,7 @@ class NavigationControls extends StatelessWidget {
               onPressed: !webViewReady
                   ? null
                   : () async {
-                      if (await controller.canGoBack()) {
+                      if (await controller!.canGoBack()) {
                         controller.goBack();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -120,7 +120,7 @@ class NavigationControls extends StatelessWidget {
               onPressed: !webViewReady
                   ? null
                   : () async {
-                      if (await controller.canGoForward()) {
+                      if (await controller!.canGoForward()) {
                         controller.goForward();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -136,7 +136,7 @@ class NavigationControls extends StatelessWidget {
               onPressed: !webViewReady
                   ? null
                   : () {
-                      controller.reload();
+                      controller!.reload();
                     },
             ),
           ],
@@ -187,14 +187,14 @@ class Menu extends StatelessWidget {
 
 class FavoritesPage extends StatelessWidget {
   FavoritesPage(this.favorites);
-  final Set<String> favorites;
+  final Set<String>? favorites;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Favorite pages')),
       body: ListView(
-          children: favorites
+          children: favorites!
               .map((url) => ListTile(
                   title: Text(url), onTap: () => Navigator.pop(context, url)))
               .toList()),

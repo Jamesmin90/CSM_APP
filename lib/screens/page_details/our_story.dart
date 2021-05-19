@@ -46,7 +46,7 @@ class Ourstory extends StatelessWidget {
                   future: Getdata(
                           'https://next.json-generator.com/api/json/get/NJstIYGqF')
                       .getData(),
-                  builder: (context, snapshot) {
+                  builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.data == null) {
                       return Center(child: CircularProgressIndicator());
                     } else {

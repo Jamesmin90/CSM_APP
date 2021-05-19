@@ -33,8 +33,8 @@ Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
-  RemoteMessage initialMessage =
-      (await FirebaseMessaging.instance.getInitialMessage());
+  RemoteMessage initialMessage = (await (FirebaseMessaging.instance
+      .getInitialMessage() as Future<RemoteMessage>));
   if (initialMessage.data['view'] == 'Events') {
     return EventsList();
   }
