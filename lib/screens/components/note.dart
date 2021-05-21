@@ -48,7 +48,7 @@ class Note {
         createdTime: createdTime ?? this.createdTime,
       );
 
-  static Note fromJson(Map<String, Object> json) => Note(
+  static Note fromJson(Map<String, Object?> json) => Note(
         id: json[NoteFields.id] as int?,
         isImportant: json[NoteFields.isImportant] == 1,
         number: json[NoteFields.number] as int?,
