@@ -1,5 +1,8 @@
 import 'package:csm/db/notes_databse.dart';
 import 'package:csm/screens/components/note.dart';
+import 'package:csm/screens/viewmodels/edit_note_page.dart';
+import 'package:csm/screens/viewmodels/note_card_widget.dart';
+import 'package:csm/screens/viewmodels/note_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class NotesPage extends StatefulWidget {
@@ -32,40 +35,7 @@ class _NotesPageState extends State<NotesPage> {
     setState(() => isLoading = false);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Notes',
-          style: TextStyle(fontSize: 24),
-        ),
-        actions: [Icon(Icons.search), SizedBox(width: 12)],
-      ),
-      body: Center(
-        child: isLoading
-            ? CircularProgressIndicator()
-            : notes.isEmpty
-                ? Text(
-                    'no Notes',
-                    style: TextStyle(color: Colors.white, fontSize: 24),
-                  )
-                : buildNotes(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        child: Icon(Icons.add),
-        onPressed: () async {
-          await Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => AddEditNotePage()),
-          );
-          refreshNotes();
-        },
-      ),
-    );
-    // ignore: dead_code
-    Widget buildNotes() {
-      return ListView.builder(
+  Widget buildNotes() => ListView.builder(
         padding: const EdgeInsets.only(
           top: 10,
           left: 10,
@@ -88,6 +58,38 @@ class _NotesPageState extends State<NotesPage> {
           );
         },
       );
-    }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Notes',
+          style: TextStyle(fontSize: 24),
+        ),
+        actions: [Icon(Icons.search), SizedBox(width: 12)],
+      ),
+      body: Center(
+        child: isLoading
+            ? CircularProgressIndicator()
+            : notes.isEmpty
+                ? Text(
+                    'no Notes',
+                    style: TextStyle(
+                        color: Color.fromRGBO(0, 110, 160, 1), fontSize: 24),
+                  )
+                : buildNotes(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(0, 110, 160, 1),
+        child: Icon(Icons.add),
+        onPressed: () async {
+          await Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => AddEditNotePage()),
+          );
+          refreshNotes();
+        },
+      ),
+    );
   }
 }

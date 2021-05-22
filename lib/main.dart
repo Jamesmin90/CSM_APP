@@ -5,6 +5,7 @@ import 'package:csm/screens/page_details/delete_user.dart';
 import 'package:csm/screens/page_details/faith.dart';
 import 'package:csm/screens/page_details/newemail.dart';
 import 'package:csm/screens/page_details/newpass.dart';
+import 'package:csm/screens/page_details/notes_page.dart';
 import 'package:csm/screens/page_details/our_goal.dart';
 import 'package:csm/screens/page_details/our_story.dart';
 import 'package:csm/screens/page_details/profile.dart';
@@ -96,6 +97,7 @@ class CSM extends StatelessWidget {
           '/to_do_list': (context) => ToDoList(),
           '/settings': (context) => Settings(),
           '/social_media': (context) => SocialMedia(),
+          '/notes': (context) => NotesPage(),
         },
       ),
     );

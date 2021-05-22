@@ -81,6 +81,8 @@ class _HomeState extends State<Home> {
               signin_profile(),
               CustomListTile(Icons.settings, 'Settings',
                   () => {Navigator.pushNamed(context, '/settings')}),
+              CustomListTile(Icons.text_snippet, 'Notes',
+                  () => {Navigator.pushNamed(context, '/notes')}),
               to_do_list(),
             ],
           ),
