@@ -9,7 +9,7 @@ class Outline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebViewContainer('https://www.csmuenchen.de/topics', 'Outline'),
+      body: WebViewContainer('https://csmuenchen.de/themen/', 'Outline'),
     );
   }
 }

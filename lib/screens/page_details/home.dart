@@ -3,8 +3,7 @@ import 'package:csm/screens/components/custom_list_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:csm/screens/components/buildlink.dart';
-import 'package:csm/screens/components/getdata.dart';
+import 'package:csm/screens/components/buildlink2.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class Home extends StatefulWidget {
@@ -123,30 +122,15 @@ class _HomeState extends State<Home> {
           SliverFillRemaining(
             child: Container(
               color: Color.fromRGBO(0, 110, 160, 1),
-              child: FutureBuilder(
-                future: Getdata(
-                        'https://next.json-generator.com/api/json/get/VJmiHkpYF')
-                    .getData(),
-                builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.data == null) {
-                    return Center(child: CircularProgressIndicator());
-                  } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            BuildLink(
-                                snapshot.data[index].image,
-                                snapshot.data[index].title,
-                                snapshot.data[index].text)
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
+              child: ListView(
+                children: [
+                  BuildLink2('assets/images/Group1.png', '/about1', 'Über Uns'),
+                  BuildLink2(
+                      'assets/images/Group2.png', '/ourgoal1', 'Unsere Ziele'),
+                  BuildLink2('assets/images/Group3.png', '/events1', 'Events'),
+                  BuildLink2('assets/images/social_media.png', '/social_media',
+                      'Social Media')
+                ],
               ),
             ),
           ),

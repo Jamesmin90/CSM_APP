@@ -61,12 +61,6 @@ class _NaviHomeState extends State<NaviHome> {
             ),
             label: ('Songbook'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.music_note,
-            ),
-            label: ('Audio'),
-          ),
         ],
       ),
     );

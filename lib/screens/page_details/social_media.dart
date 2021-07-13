@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 class SocialMedia extends StatelessWidget {
   final Uri _emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'Info@CSM.de',
+      path: 'hello@csmuenchen.de',
       queryParameters: {'subject': 'Hallo CSM!'});
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@ import 'package:csm/screens/components/user_topic_info.dart';
 import 'package:csm/screens/page_details/anmelden_screen.dart';
 import 'package:csm/screens/page_details/audio.dart';
 import 'package:csm/screens/page_details/delete_user.dart';
+import 'package:csm/screens/page_details/event1.dart';
 import 'package:csm/screens/page_details/faith.dart';
 import 'package:csm/screens/page_details/newemail.dart';
 import 'package:csm/screens/page_details/newpass.dart';
@@ -29,6 +30,8 @@ import 'package:csm/screens/page_details/about.dart';
 import 'package:csm/screens/components/constants.dart';
 import 'package:csm/screens/page_details/welcome_screen.dart';
 import 'package:csm/screens/page_details/registration_screen.dart';
+import 'package:csm/screens/page_details/about1.dart';
+import 'package:csm/screens/page_details/ourgoal.dart';
 
 Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
@@ -98,6 +101,9 @@ class CSM extends StatelessWidget {
           '/settings': (context) => Settings(),
           '/social_media': (context) => SocialMedia(),
           '/notes': (context) => NotesPage(),
+          '/about1': (context) => About1(),
+          '/ourgoal1': (context) => Ourgoal1(),
+          '/events1': (context) => Event1(),
         },
       ),
     );
